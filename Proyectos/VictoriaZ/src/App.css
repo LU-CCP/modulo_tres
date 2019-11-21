@@ -1,0 +1,77 @@
+.App {
+  text-align: left;
+}
+
+
+
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.Caja{
+  border: 1px solid #09d3ac;
+  width:80%;
+}
+
+.Izquierda{
+  text-align: left;
+}
+
+.Derecha{
+  text-align: right;
+}
+
+.Estampilla{
+  width:50px;
+  display:flex;
+  flex-direction:flex-end;
+  float: right;
+}
+
+.Container-Superior{
+  display:flex;
+  flex-direction:row;
+  text-indent: 0%;
+}
+
+.Container-Inferior{
+  display:flex;
+  justify-content:center;
+}
+
+.Direccion{
+
+  text-indent: 0%;
+}
+
+.Estampa{
+  height:80px;
+  width: 80px;
+
+}
+
+.Estampilla2{
+  float: right;
+  border: 1px solid #09d3ac;
+  position: absolute; 
+  right: 100px;
+  width: 100px;
+  height: 100px;
+  background: #08B;
+}
