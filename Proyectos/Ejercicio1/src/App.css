@@ -20,39 +20,3 @@
 .App-link {
   color: #09d3ac;
 }
-
-.Container-Envelope {
-  border:1px solid gray;
-  background-color: #4669ad;
-}
-
-.Container-Superior {
-width: 400px;
-display: flex;
-flex-direction: row;
-color: #8984a7
-}
-.Direccion {
-  width: 200px;
-  /* color: #404644 */
-}
-
-.Estampilla {
-width: 200px;
-display: flex;
-flex-direction: flex-end;
-color: #09d3ac
-}
-
-.Container-Inferior {
-  width: fit-content;
-  display: flex;
-  justify-content: left;
-  color: #5ad309
-}
-
-.Estampa {
-  height: 80px;
-  width: 80px;
-  color: #09d3ac
-}
