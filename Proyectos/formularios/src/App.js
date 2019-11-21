@@ -21,6 +21,7 @@ class App extends React.Component {
     alert(`${firstName} ${lastName} ${email}`)
   }
 
+  //Este es el render
   render(){
     const {firstName, lastName, email} = this.state;
     return (
