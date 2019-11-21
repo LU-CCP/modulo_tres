@@ -27,10 +27,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <form className="Form" onSubmit={this.handleSubmit}>
-          <input required value={firstName} onChange={this.handleChange('firstName')} />
+          Formulario Lagash<input required value={firstName} onChange={this.handleChange('firstName')} />
           <input required value={lastName} onChange={this.handleChange('lastName')} />
           <input required type='email' value={email} onChange={this.handleChange('email')} />
-          <button type='submit'>{'Submit'}</button>
+          <button type='submit'>{'Subir'}</button>
         </form>
       </div>
     )
