@@ -1,29 +1,39 @@
 import React from 'react';
 import './App.css';
-import { TextInput, Button } from './components'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      TextInputDisabled: false
+      firstName: '',
+      lastName: '',
+      email: ''
     };
   }
 
-  handeClick = () => {
-    const {TextInputDisabled} = this.state
-    this.setState({TextInputDisabled: !TextInputDisabled})
+  handleChange = (key) => ({ target: { value } }) => {
+    console.log(key, this.state, value)
+    this.setState({ [key]: value })
   }
 
+  handleSubmit = () => {
+    const { firstName, lastName, email } = this.state;
+    alert(`${firstName} ${lastName} ${email}`)
+  }
+
+
   render() {
-    const { TextInputDisabled} = this.state;
-    console.log('render')
+    const { firstName, lastName, email } = this.state;
     return (
       <div className="App">
-        <TextInput disabled={TextInputDisabled} />
-        <Button onClick = {this.handeClick} />
+        <form className="Form" onSubmit={this.handleSubmit}>
+          <input required value={firstName} onChange={this.handleChange('firstName')} />
+          <input required value={lastName} onChange={this.handleChange('lastName')} />
+          <input required type='email' value={email} onChange={this.handleChange('email')} />
+          <button type='submit'>{'Submit'}</button>
+        </form>
       </div>
-    );
+    )
   }
 }
 
