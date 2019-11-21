@@ -2,6 +2,10 @@
   text-align: left;
 }
 
+.Form {
+  display: block;
+}
+
 .App-align-left {
   text-align: left;
 }
