@@ -1,10 +1,17 @@
 .App {
-  text-align: left;
+  text-align: center;
 }
 
 .App-logo {
   height: 40vmin;
 }
+
+.Form {
+  display: block;
+  flex-direction: column;
+  width: 200px;
+}
+
 
 .App-header {
   background-color: #282c34;
@@ -18,45 +25,30 @@
 }
 
 .App-link {
-  color: blue;
+  color: #09d3ac;
 }
 
-.Form {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
+.Caja {
+  border: peru;
 }
 
-/*
-
-.Container-Envelope{
+.Caja-Envelope{
   border: 1px solid gray;
 }
-
-.Container-Superior{
+.Caja-Superior{
   width: 400px;
   display: flex;
-  flex-direction: row;
+  flex-flow: row;
 }
-
-.Direccion {
+.Direccion{
   width: 200px;
 }
-
 .Estampilla{
   width: 200px;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: flex-end;
 }
-.Container-Inferior {
+.Caja-Inferior{
   display: flex;
   justify-content: center;
 }
-.Estampa{
-  height: 80px;
-  width: 80;
-}
-
-*/
-
-
