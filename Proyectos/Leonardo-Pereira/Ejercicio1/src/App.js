@@ -13,19 +13,16 @@ class  App extends React.Component {
         nombre: "",
         apellido: "",
         email: "",
+        sexo:"",
         fecha:""
-
-
         
       };
-
-      
-
-      
+    
     }
 
     handleChange=(key)=>({target:{value}})=>{
-      console.log(key,this.state,value)
+
+
       this.setState({[key]:value});
     
   
@@ -33,14 +30,11 @@ class  App extends React.Component {
 
     handleSubmit=()=>{
 
-      const {nombre,apellido,email,fecha}= this.state;
+      const {nombre,apellido,email,fecha,sexo}= this.state;
 
       alert(`${nombre} ${apellido} ${email} ${fecha}`);
     }
 
-
-
-  
   render(){ 
 
        const {nombre,apellido,email,fecha}= this.state;
@@ -48,6 +42,7 @@ class  App extends React.Component {
         return(
 
           <div className="App">
+            <h1>Ejercicio 1 </h1>
 
             <form onSubmit={this.handleSubmit}>
 
@@ -58,8 +53,8 @@ class  App extends React.Component {
               <input type="email" required placeholder="Email" value ={email} onChange={this.handleChange('email')}/>
               <br/>
              
-              Hombre: <input type="radio"/>
-              Mujer:  <input type="radio"/>
+              Hombre: <input type="radio" name="sex"/>
+              Mujer:  <input type="radio" name="sex" />
               
              
               <br/>
