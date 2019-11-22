@@ -3,7 +3,9 @@
 }
 
 .Form {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
 }
 
 .App-align-left {
