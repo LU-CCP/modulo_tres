@@ -7,8 +7,12 @@
 }
 
 .mybtn{
-  display: flex;
-  position: inherit;
+  margin-left: 70px;
+  margin-top: 20px;
+}
+
+.div2 {
+  margin-top: 18px;
 }
 
 .div1 a {
@@ -16,6 +20,7 @@
   flex-direction: column;
   width: 200px;
   text-align: center;
+  margin-bottom: 5px;
 }
 
 .inpt {

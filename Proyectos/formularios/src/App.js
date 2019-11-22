@@ -31,18 +31,24 @@ class App extends React.Component {
         <form className="Form" onSubmit={this.handleSubmit}>
           <a> Nombre</a>
           <input className="inpt" required placeholder='Ingrese nombre' value={nombre} onChange={this.handleChange('nombre')} ></input>
+          <br></br>
           <a>Apellido</a>
           <input className="inpt" required placeholder='Ingrese apellido' value={apellido} onChange={this.handleChange('apellido')}></input>
+          <br></br>
           <a>Email</a>
           <input className="inpt" required type='email' placeholder='example@gmail.com' value={email} onChange={this.handleChange('email')}></input>
+          <br></br>
           <a>Genero</a>
           <input required type='radio' name="generos" id='masculino' value={genero[0]} onChange={this.handleChange('genero')}></input>
           <label for='masculino'>{'Masculino'}</label>
           <input required type='radio' name="generos" id='femenino' value={genero[1]} onChange={this.handleChange('genero')}></input>
           <label class="fem" for='femenino'>{'Femenino'}</label>
-          <a>Fecha Nacimiento</a>
-          <input className="inpt" required placeholder='DD/MM/YYYY' value={fechaNacimiento} onChange={this.handleChange('fechaNacimiento')}></input>
-          <button className="mybtn" type='submit'>{'Submit'}</button>
+          <br></br>
+          <div className="div2">
+            <a>Fecha Nacimiento</a>
+            <input className="inpt" required placeholder='DD/MM/YYYY' value={fechaNacimiento} onChange={this.handleChange('fechaNacimiento')}></input>
+            <button className="mybtn" type='submit'>{'Enviar'}</button>
+          </div>
         </form>
       </div>
     );
