@@ -15,14 +15,6 @@ class App extends Component {
     };
   }
 
-  handleChange = (key) => ({ target: { value }}) => {
-    this.setState({ [key]: value });
-  }
-
-  handleSubmit = () => {
-    const { firstName, lastName, email, gender, birthdate } = this.state;
-    alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`)
-  }
 
   renderGendersFor = () => {
     const gendersJSX = [];
