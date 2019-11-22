@@ -5,9 +5,11 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: ''
+      nombre: '',
+      apellido: '',
+      email: '',
+      genero: '',
+      fechaNacimiento: ''
     };
   }
 
@@ -17,19 +19,23 @@ class App extends React.Component {
   }
 
   handleSubmit = () => {
-    const {firstName, lastName, email} = this.state;
-    alert(`${firstName} ${lastName} ${email}`)
+    const { nombre, apellido, email, genero, fechaNacimiento } = this.state;
+    alert(`Nombre: ${nombre} \n Apellido: ${apellido} \n Email: ${email} \n Genero: ${genero} \n Fecha de Nacimiento ${fechaNacimiento}`)
   }
 
   //Este es el render
   render(){
-    const {firstName, lastName, email} = this.state;
+    const { nombre, apellido, email, genero, fechaNacimiento } = this.state;
     return (
       <div className="App">
         <form className="Form" onSubmit={this.handleSubmit}>
-          <input required value={firstName} onChange={this.handleChange('firstName')} ></input>
-          <input required value={lastName} onChange={this.handleChange('lastName')}></input>
+          <p> Nombre</p>
+          <input required value={nombre} onChange={this.handleChange('nombre')} ></input>
+          <p>Apellido</p>
+          <input required value={apellido} onChange={this.handleChange('apellido')}></input>
+          <p>Email</p>
           <input required type='email' value={email} onChange={this.handleChange('email')}></input>
+          
           <button type='submit'>{'Submit'}</button>
         </form>
       </div>
