@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.Form {
+  display: block;
+  flex-direction: column;
+  width: 200px;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.Caja {
+  border: peru;
+}
+
+.Caja-Envelope{
+  border: 1px solid gray;
+}
+.Caja-Superior{
+  width: 400px;
+  display: flex;
+  flex-flow: row;
+}
+.Direccion{
+  width: 200px;
+}
+.Estampilla{
+  width: 200px;
+  display: flex;
+  flex-direction: flex-end;
+}
+.Caja-Inferior{
+  display: flex;
+  justify-content: center;
+}
