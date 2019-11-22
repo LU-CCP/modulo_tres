@@ -8,7 +8,7 @@ class App extends React.Component {
       nombre: '',
       apellido: '',
       email: '',
-      genero: '',
+      genero: ['Masculino', 'Femenino'],
       fechaNacimiento: ''
     };
   }
@@ -20,7 +20,7 @@ class App extends React.Component {
 
   handleSubmit = () => {
     const { nombre, apellido, email, genero, fechaNacimiento } = this.state;
-    alert(`Nombre: ${nombre} \n Apellido: ${apellido} \n Email: ${email} \n Genero: ${genero} \n Fecha de Nacimiento ${fechaNacimiento}`)
+    alert(`Nombre: ${nombre} \n Apellido: ${apellido} \n Email: ${email} \n Genero: ${genero} \n Fecha de Nacimiento: ${fechaNacimiento}`)
   }
 
   //Este es el render
@@ -30,19 +30,19 @@ class App extends React.Component {
       <div className="App" class="div1">
         <form className="Form" onSubmit={this.handleSubmit}>
           <a> Nombre</a>
-          <input required value={nombre} onChange={this.handleChange('nombre')} ></input>
+          <input className="inpt" required placeholder='Ingrese nombre' value={nombre} onChange={this.handleChange('nombre')} ></input>
           <a>Apellido</a>
-          <input required value={apellido} onChange={this.handleChange('apellido')}></input>
+          <input className="inpt" required placeholder='Ingrese apellido' value={apellido} onChange={this.handleChange('apellido')}></input>
           <a>Email</a>
-          <input required type='email' value={email} onChange={this.handleChange('email')}></input>
+          <input className="inpt" required type='email' placeholder='example@gmail.com' value={email} onChange={this.handleChange('email')}></input>
           <a>Genero</a>
-          <input required type='radio' name="generos" id='masculino' value={genero} onChange={this.handleChange('genero')}></input>
+          <input required type='radio' name="generos" id='masculino' value={genero[0]} onChange={this.handleChange('genero')}></input>
           <label for='masculino'>{'Masculino'}</label>
-          <input required type='radio' name="generos" id='femenino' value={genero} onChange={this.handleChange('genero')}></input>
+          <input required type='radio' name="generos" id='femenino' value={genero[1]} onChange={this.handleChange('genero')}></input>
           <label class="fem" for='femenino'>{'Femenino'}</label>
           <a>Fecha Nacimiento</a>
-          <input required value={fechaNacimiento} onChange={this.handleChange('fechaNacimiento')}></input>
-          <button type='submit'>{'Submit'}</button>
+          <input className="inpt" required placeholder='DD/MM/YYYY' value={fechaNacimiento} onChange={this.handleChange('fechaNacimiento')}></input>
+          <button className="mybtn" type='submit'>{'Submit'}</button>
         </form>
       </div>
     );

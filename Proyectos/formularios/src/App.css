@@ -6,7 +6,19 @@
   height: 40vmin;
 }
 
-.Form {
+.mybtn{
+  display: flex;
+  position: inherit;
+}
+
+.div1 a {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  text-align: center;
+}
+
+.inpt {
   display: flex;
   flex-direction: column;
   width: 200px;
