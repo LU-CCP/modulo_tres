@@ -9,12 +9,11 @@ class App extends React.Component {
       lastName: "",
       mail: "",
       date: "",
-      gender: ""
+      gender: ["Masculino", "Femenino"]
     };
   }
 
   handleChange = key => ({ target: { value } }) => {
-    console.log(key, this.state, value);
     this.setState({ [key]: value });
   };
 
@@ -70,7 +69,7 @@ class App extends React.Component {
               type="radio"
               required
               name="gender"
-              value="Masculino"
+              value={gender[0]}
               onChange={this.handleChange("gender")}
             />
             Masculino
@@ -80,7 +79,7 @@ class App extends React.Component {
               type="radio"
               required
               name="gender"
-              value="Femenino"
+              value={gender[1]}
               onChange={this.handleChange("gender")}
             />
             Femenino
