@@ -24,7 +24,7 @@ class App extends React.Component {
     alert(`${nombre} ${apellido} ${email} ${genero} ${fechaNacimiento}`)
   }
   render(){
-    const {nombre,apellido,email,genero,fechaNacimiento}= this.state;
+    const {nombre,apellido,email,fechaNacimiento}= this.state;
 
     return(
         <div className="App">
