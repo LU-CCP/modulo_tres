@@ -34,7 +34,7 @@ class App extends React.Component {
             <input required type="email" value={email} onChange={this.handleChange('email')}/>
             <input required type="radio" name='genero' value='masculino' checked={this.state.genero==='masculino'} onChange={this.handleChange('genero')} /> Masculino
             <input required type="radio" name='genero' value='femenino' checked={this.state.genero==='femenino'} onChange={this.handleChange('genero')}/> Femenino
-            <input required value={fechaNacimiento} onChange={this.handleChange('fechaNacimiento')}/>
+            <input required type="date" value={fechaNacimiento} onChange={this.handleChange('fechaNacimiento')}/>
             <button type="submit">Guardar</button>
           </form>
         </div>
