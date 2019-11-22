@@ -3,7 +3,7 @@ import './App.css';
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       firstName: '',
       lastName: '',
@@ -11,9 +11,9 @@ class App extends React.Component {
     };
   }
 
-  handleChange = (key) => ({ target: { value }}) => {
+  handleChange = (key) => ({ target: { value } }) => {
     console.log(key, this.state, value)
-    this.setState({ [key]: value });
+    this.setState({ [key]: value })
   }
 
   handleSubmit = () => {
@@ -21,20 +21,19 @@ class App extends React.Component {
     alert(`${firstName} ${lastName} ${email}`)
   }
 
+
   render() {
     const { firstName, lastName, email } = this.state;
     return (
       <div className="App">
-        <form className='Form' onSubmit={this.handleSubmit}>
-          <input required value={firstName} onChange={this.handleChange('firstName')} />
+        <form className="Form" onSubmit={this.handleSubmit}>
+          Formulario Lagash<input required value={firstName} onChange={this.handleChange('firstName')} />
           <input required value={lastName} onChange={this.handleChange('lastName')} />
           <input required type='email' value={email} onChange={this.handleChange('email')} />
-          {/* <input type="radio" name="gender" value="male"> Male<br>
-          <input type="radio" name="gender" value="female"> Female<br></br> */}
-          <button type='submit'>{'Submit'}</button>
+          <button type='submit'>{'Subir'}</button>
         </form>
       </div>
-    );
+    )
   }
 }
 

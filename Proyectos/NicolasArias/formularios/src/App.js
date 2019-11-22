@@ -2,36 +2,33 @@ import React from 'react';
 import './App.css';
 
 class App extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
       firstName: '',
       lastName: '',
       email: ''
-    };
+    }
   }
 
-  handleChange = (key) => ({ target: { value }}) => {
-    console.log(key, this.state, value)
-    this.setState({ [key]: value });
+  handleChange = (key) => ({target: {value}}) =>{
+    this.setState({ [key]:value });
   }
 
-  handleSubmit = () => {
+  handleSubmit = () =>{
     const { firstName, lastName, email } = this.state;
     alert(`${firstName} ${lastName} ${email}`)
   }
 
-  render() {
+  render(){
     const { firstName, lastName, email } = this.state;
-    return (
+    return(
       <div className="App">
-        <form className='Form' onSubmit={this.handleSubmit}>
+        <form className="Form" onSubmit={this.handleSubmit}>
           <input required value={firstName} onChange={this.handleChange('firstName')} />
           <input required value={lastName} onChange={this.handleChange('lastName')} />
           <input required type='email' value={email} onChange={this.handleChange('email')} />
-          {/* <input type="radio" name="gender" value="male"> Male<br>
-          <input type="radio" name="gender" value="female"> Female<br></br> */}
-          <button type='submit'>{'Submit'}</button>
+          <button type='submit'> {'Submit'} </button>
         </form>
       </div>
     );
