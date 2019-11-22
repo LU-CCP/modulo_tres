@@ -20,3 +20,9 @@
 .App-link {
   color: #09d3ac;
 }
+.Form {
+  display: block;
+  flex-direction: column;
+  width: 100px;
+  margin-left: 100px;
+}
