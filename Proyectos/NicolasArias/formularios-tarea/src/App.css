@@ -1,0 +1,41 @@
+.App {
+  text-align: left;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.App-align-left {
+  text-align: left;
+}
+
+.App-align-center {
+  text-align: center;
+}
+
+.App-align-right {
+  text-align: right;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
