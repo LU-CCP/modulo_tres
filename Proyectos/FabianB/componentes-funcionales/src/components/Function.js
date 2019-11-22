@@ -10,13 +10,7 @@ const Function = () => {
     const [gender, setGender] = useState('');
     const [birthdate, setBirthdate] = useState('');
 
-
-
-
-
-
-
-
+    
     const handleChange = (key) => ({ target: { value } }) => {
         setState({ [key]: value });
     }
