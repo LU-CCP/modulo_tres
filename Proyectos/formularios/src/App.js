@@ -46,7 +46,7 @@ class App extends React.Component {
           <br></br>
           <div className="div2">
             <a>Fecha Nacimiento</a>
-            <input className="inpt" required placeholder='DD/MM/YYYY' value={fechaNacimiento} onChange={this.handleChange('fechaNacimiento')}></input>
+            <input className='fechaNac' type='date' required  value={fechaNacimiento} onChange={this.handleChange('fechaNacimiento')}></input>
             <button className="mybtn" type='submit'>{'Enviar'}</button>
           </div>
         </form>

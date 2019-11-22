@@ -9,10 +9,16 @@
 .mybtn{
   margin-left: 70px;
   margin-top: 20px;
+  display: flex;
 }
 
 .div2 {
   margin-top: 18px;
+}
+
+.fechaNac {
+  width: 200px;
+  text-align: center;
 }
 
 .div1 a {
