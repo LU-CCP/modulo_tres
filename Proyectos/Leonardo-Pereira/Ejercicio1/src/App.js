@@ -32,9 +32,10 @@ class  App extends React.Component {
 
       const {nombre,apellido,email,fecha,sexo}= this.state;
 
-      alert(`${nombre} ${apellido} ${email} ${fecha}`);
+      alert(`${nombre} ${apellido} ${email} ${fecha} ${sexo}`);
     }
-
+    
+    
   render(){ 
 
        const {nombre,apellido,email,fecha}= this.state;
@@ -53,8 +54,8 @@ class  App extends React.Component {
               <input type="email" required placeholder="Email" value ={email} onChange={this.handleChange('email')}/>
               <br/>
              
-              Hombre: <input type="radio" name="sex"/>
-              Mujer:  <input type="radio" name="sex" />
+              Hombre: <input type="radio" name="sex"  value="masculino" required checked={this.state.sexo==='masculino'} onChange={this.handleChange('sexo')} />
+              Mujer:  <input type="radio" name="sex"  value="femenino" required checked={this.state.sexo==='femenino'} onChange={this.handleChange('sexo')} />
               
              
               <br/>
