@@ -8,7 +8,9 @@ import './App.css';
       this.state = {
         firstName: '',
         lastName: '',
-        email:''
+        email:'',
+        fechaNacimiento:'',
+        genero:['Masculino', 'Femenino']
       };
     }
 
@@ -18,20 +20,35 @@ import './App.css';
   }
 
   handleSubmit = () => {
-    const { firstName, lastName, email } = this.state;
-    alert(`${firstName} ${lastName} ${email}`)
+    const { firstName, lastName, email, fechaNacimiento, genero } = this.state;
+    alert(`${firstName} ${lastName} ${email} ${fechaNacimiento} ${genero}`)
   }
 
   render() {
-    const {firstName, lastName, email} = this.state;
+    const {firstName, lastName, email, fechaNacimiento, genero} = this.state;
     return (
     <div className="App">
+      <center>
       <form className='Form' onSubmit={this.handleSubmit}>
-        <input required value={firstName} onChange={this.handleChange('firstName')}/>
-        <input required value={lastName}  onChange={this.handleChange('lastName')}/>
-        <input required type='email' value={email}  onChange={this.handleChange('email')}/>
+        Nombre<input required value={firstName} onChange={this.handleChange('firstName')}/>
+
+        Apellido<input required value={lastName}  onChange={this.handleChange('lastName')}/>
+
+        Email<input required type='email' value={email}  onChange={this.handleChange('email')}/>
+
+        Fecha de Nacimiento<input type='date' required  value={fechaNacimiento} onChange={this.handleChange('fechaNacimiento')}/>
+
+      <div>
+        <label name='generos'>
+        <input required type='radio' name='generos' value={genero[0]}  onChange={this.handleChange('genero')}></input>
+        Masculino</label>
+        <label name='generos'>
+        <input required type='radio' name='generos' value={genero[1]}  onChange={this.handleChange('genero')}></input>
+        Femenino</label>
+      </div>
+
     <button type='submit'>{'Submit'}</button>
-      </form>
+      </form></center>
     </div>
     );
   }

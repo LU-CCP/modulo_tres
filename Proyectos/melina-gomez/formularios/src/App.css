@@ -1,6 +1,11 @@
 .App {
   text-align: center;
 }
+.Form {
+  display: flex;
+  flex-direction: column;
+  width:200px;
+}
 
 .App-logo {
   height: 40vmin;
@@ -20,9 +25,7 @@
 .App-link {
   color: #09d3ac;
 }
-.Form {
-  display: block;
-  flex-direction: column;
-  width: 100px;
-  margin-left: 100px;
+
+div {
+  text-align: left;
 }
