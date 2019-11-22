@@ -15,6 +15,8 @@ class App extends React.Component {
     console.log(key, this.state, value);
     this.setState({[key]:value});
   }
+
+  // COMENTARIO DE PRUEBA
   
   handleSubmit = () => {
     const {firstName, lastName, email} = this.state;
