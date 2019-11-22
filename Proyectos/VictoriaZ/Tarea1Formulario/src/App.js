@@ -36,7 +36,7 @@ class App extends React.Component {
   }
 //placeholder='algo' para que aparezca en el cuadradito el nombre del campo
   render (){
-    const {nombre, apellido, email, genero, fechaNacimiento}=this.state
+    const {nombre, apellido, email, fechaNacimiento}=this.state
     return ( //onclick es una propiedad creado por nosotros
       //< pasar solo el nombre de la propiedad es lo mismo que propiedad={true}>
       <div className="App">
@@ -47,7 +47,8 @@ class App extends React.Component {
           <fieldset>
             <legend>Escoja un género</legend>
             <label><input type='radio' name='genero' value='Femenino' required checked={this.state.genero==='Femenino'} onChange={this.handleChange('genero')}></input> Femenino </label>
-           <div><label><input type='radio' name='genero' value='Masculino' required  checked={this.state.genero==='Mascullino'} onChange={this.handleChange('genero')}></input> Masculino </label></div>
+           <div><label><input type='radio' name='genero' value='Masculino' required  checked={this.state.genero==='Masculino'} onChange={this.handleChange('genero')}></input> Masculino </label></div>
+
           </fieldset>
 
           
