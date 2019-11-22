@@ -29,6 +29,8 @@ class App extends React.Component {
           <input required value={firstName} onChange={this.handleChange('firstName')} />
           <input required value={lastName} onChange={this.handleChange('lastName')} />
           <input required type='email' value={email} onChange={this.handleChange('email')} />
+          {/* <input type="radio" name="gender" value="male"> Male<br>
+          <input type="radio" name="gender" value="female"> Female<br></br> */}
           <button type='submit'>{'Submit'}</button>
         </form>
       </div>
