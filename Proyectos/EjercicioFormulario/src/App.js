@@ -9,7 +9,7 @@ class App extends React.Component {
       lastName: "",
       mail: "",
       date: "",
-      gender: ["masculino", "femenino"]
+      gender: ""
     };
   }
 
@@ -53,9 +53,9 @@ class App extends React.Component {
           <label>
             <input
               type="radio"
-              id="masculino"
+              required
               name="gender"
-              value={gender[0]}
+              value="Masculino"
               onChange={this.handleChange("gender")}
             />
             Masculino
@@ -63,9 +63,9 @@ class App extends React.Component {
           <label>
             <input
               type="radio"
-              id="femenino"
+              required
               name="gender"
-              value={gender[1]}
+              value="Femenino"
               onChange={this.handleChange("gender")}
             />
             Femenino
