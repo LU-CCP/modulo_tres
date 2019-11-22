@@ -32,7 +32,7 @@ class  App extends React.Component {
 
       const {nombre,apellido,email,fecha,sexo}= this.state;
 
-      alert(`${nombre} ${apellido} ${email} ${fecha} ${sexo}`);
+      alert(`Nombre: ${nombre} Apellido: ${apellido} Email: ${email} Fecha Nac: ${fecha} Sexo: ${sexo}`);
     }
     
     
@@ -43,7 +43,7 @@ class  App extends React.Component {
         return(
 
           <div className="App">
-            <h1>Ejercicio 1 </h1>
+            <h1>Ejercicio 1: Formulario </h1>
 
             <form onSubmit={this.handleSubmit}>
 
