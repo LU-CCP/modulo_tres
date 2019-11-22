@@ -28,28 +28,43 @@ class App extends React.Component {
     return (
       <div className="App">
         <form className="form" onSubmit={this.handleSubmit}>
-          <input
-            required
-            value={firstName}
-            onChange={this.handleChange("firstName")}
-          />
-          <input
-            required
-            value={lastName}
-            onChange={this.handleChange("lastName")}
-          />
-          <input
-            required
-            type="email"
-            value={mail}
-            onChange={this.handleChange("mail")}
-          />
-          <input
-            required
-            type="date"
-            value={date}
-            onChange={this.handleChange("date")}
-          />
+          <p>
+            <label>Tu Nombre: </label>
+            <input
+              required
+              value={firstName}
+              onChange={this.handleChange("firstName")}
+              placeholder="Nombre"
+            />
+          </p>
+          <p>
+            <label>Tu Apellidos: </label>
+            <input
+              required
+              value={lastName}
+              onChange={this.handleChange("lastName")}
+              placeholder="Apellido"
+            />
+          </p>
+          <p>
+            <label>Tu Email: </label>
+            <input
+              required
+              type="email"
+              value={mail}
+              onChange={this.handleChange("mail")}
+              placeholder="Email"
+            />
+          </p>
+          <p>
+            <label>Fecha de Nacimiento: </label>
+            <input
+              required
+              type="date"
+              value={date}
+              onChange={this.handleChange("date")}
+            />
+          </p>
           <label>
             <input
               type="radio"
@@ -70,9 +85,11 @@ class App extends React.Component {
             />
             Femenino
           </label>
-          <button type="submit">
-            {"Submit"}
-          </button>
+          <p>
+            <button type="submit">
+              {"Submit"}
+            </button>
+          </p>
         </form>
       </div>
     );
