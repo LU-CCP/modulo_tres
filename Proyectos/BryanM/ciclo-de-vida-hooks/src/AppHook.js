@@ -2,9 +2,6 @@ import React, { memo,useEffect, useState, useRef } from 'react';
 import logo from './logo.svg'
 import './App.css';
 
-const arr = [1,2]
-const [uno, dos] = arr;
-
 const App = () => {
     const _varGlobalRef = useRef('');
     const [value, setValue] = useState('Learn React')
