@@ -18,6 +18,7 @@ class Hyperlink extends Component {
 
     if (state.showInstructions !== showInstructions) {
       return { showInstructions }
+    
     }
 
     return null;

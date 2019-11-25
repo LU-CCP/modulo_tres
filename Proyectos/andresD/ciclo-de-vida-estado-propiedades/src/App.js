@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { showInstructions } = this.state;
+  
     return (
       <div className="App">
         <header className="App-header">
