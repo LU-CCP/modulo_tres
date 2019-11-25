@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-const genders = ['male','female','other'];
+const genders = ['male', 'female', 'other'];
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,17 +24,13 @@ class App extends Component {
     alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`)
   }
 
-  renderGendersFor = () => 
-  {
+  renderGendersFor = () => {
     const gendersJSX = [];
-    for (let index = 0; index < genders.length; index++) 
-    {
-      const gender = genders[index];
+    for (let i = 0; i < genders.length; i++) {
+      const gender = genders[i];
       gendersJSX.push(
-    
-        <div
-        key = {gender}>
-            <input 
+        <div key={gender}>
+          <input 
             className='App-Form-Item' 
             name='genders' 
             required 
@@ -41,22 +38,18 @@ class App extends Component {
             value={gender}
             onChange={this.handleChange('gender')} 
             />{gender}
-          </div>
-      )
+        </div>
+      );
     }
     return gendersJSX;
   }
 
-  renderGendersForEach = () =>
-  {
+  renderGendersForEach = () => {
     const gendersJSX = [];
-    genders.forEach((gender) =>
-    {
+    genders.forEach((gender) => {
       gendersJSX.push(
-    
-        <div
-        key = {gender}>
-            <input 
+        <div key={gender}>
+          <input 
             className='App-Form-Item' 
             name='genders' 
             required 
@@ -64,20 +57,17 @@ class App extends Component {
             value={gender}
             onChange={this.handleChange('gender')} 
             />{gender}
-          </div>
-      )
+        </div>
+      );
     });
     return gendersJSX;
   }
 
-  renderGendersMap = () =>
-  {
-    return genders.map((gender) =>
-    {
-      return(
-        <div
-        key = {gender}>
-            <input 
+  renderGendersMap = () => {
+    return genders.map((gender) => {
+      return (
+        <div key={gender}>
+          <input 
             className='App-Form-Item' 
             name='genders' 
             required 
@@ -85,10 +75,11 @@ class App extends Component {
             value={gender}
             onChange={this.handleChange('gender')} 
             />{gender}
-          </div>
-      )
+        </div>
+      );
     })
   }
+
   render() {
     const { firstName, lastName, email, birthdate } = this.state;
     return (

@@ -1,17 +1,5 @@
 .App {
-  display: flex;
-  justify-content: center;
-  padding-top: 50px;
-}
-
-.App-Form {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-}
-
-.App-Form-Item {
-  margin: 10px;
+  text-align: center;
 }
 
 .App-logo {
