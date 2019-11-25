@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './AppHook';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,20 +24,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount')
-    setTimeout(() => {
-      console.log('setState')
-      this.setState({value: 'Learn React Now!'});
-    }, 3000)
-    setTimeout(() => {
-      this._varGlobal = 'Please';
-      console.log('forceUpdate')
-      this.forceUpdate();
-    }, 4000)
-    setTimeout(() => {
-      console.log('setState compare')
-      this.setState({compare: ''});
-    }, 5000)
+
   }
 
   componentDidUpdate() {
@@ -47,21 +35,21 @@ class App extends React.Component {
     console.log('render')
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {`${this.state.value} ${this._varGlobal}`}
-          </a>
-        </header>
-      </div>
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {`${this.state.value} ${this._varGlobal}`}
+        </a>
+      </header>
+    </div>
     );
   }
 }
