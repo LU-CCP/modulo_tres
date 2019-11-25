@@ -41,12 +41,10 @@ class Hyperlink extends Component {
     }, 3000)
     setTimeout(() => {
       this._varGlobal = 'Please';
-      console.log('Hyperlink forceUpdate')
-      this.forceUpdate();
     }, 4000)
     setTimeout(() => {
       console.log('Hyperlink setState compare')
-      this.setState({compare: ''});
+      setCompare('')
       const { onHide }  = this.props;
       onHide();
     }, 5000)
