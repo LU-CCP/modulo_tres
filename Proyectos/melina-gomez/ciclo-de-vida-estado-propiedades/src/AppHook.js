@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback,useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Hyperlink from './HyperlinkHook';
@@ -7,9 +7,9 @@ import Instructions from './InstructionsHook';
 const App = () => {
     const [showInstructions,setShowInstruccions] = useState(true)
 
-    const handleHide = () => {
-        setShowInstruccions(false)
-    }
+    const handleHide = useCallback(() => {
+        setShowInstruccions(false);
+    }, []);
     return (
       <div className="App">
         <header className="App-header">
