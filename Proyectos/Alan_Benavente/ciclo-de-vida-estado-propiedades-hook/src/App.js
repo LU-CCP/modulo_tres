@@ -2,8 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Hyperlink from './Hyperlink';
-import Instructions from './Instructions';
+import Hyperlink from './HyperlinkHook';
+import Instructions from './InstructionsHook';
 
 class App extends React.Component {
   constructor(props) {
