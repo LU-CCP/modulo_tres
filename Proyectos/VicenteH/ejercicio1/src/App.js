@@ -15,70 +15,7 @@ class App extends Component {
     };
   }
 
-  handleChange = (key) => ({ target: { value } }) => {
-    this.setState({ [key]: value });
-  }
-
-  handleSubmit = () => {
-    const { firstName, lastName, email, gender, birthdate } = this.state;
-    alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`)
-  }
-
-  renderGendersFor = () => {
-    const gendersJSX = [];
-    for (let i = 0; i < genders.length; i++) {
-      const gender = genders[i];
-      gendersJSX.push(
-        <div key={gender}>
-          <input
-            className='App-Form-Item'
-            name='genders'
-            required
-            type='radio'
-            value={gender}
-            onChange={this.handleChange('gender')}
-          />{gender}
-        </div>
-      );
-    }
-    return gendersJSX
-  }
-
-  renderGendersForEach = () => {
-    const gendersJSX = [];
-    genders.forEach((gender) => {
-      gendersJSX.push(
-        <div key={gender}>
-          <input
-            className='App-Form-Item'
-            name='genders'
-            required
-            type='radio'
-            value={gender}
-            onChange={this.handleChange('gender')}
-          />{gender}
-        </div>
-      );
-    });
-    return gendersJSX;
-  }
-
-  renderGendersMap = () => {
-    return genders.map((gender) => {
-      return (
-        <div key={gender}>
-          <input
-            className='App-Form-Item'
-            name='genders'
-            required
-            type='radio'
-            value={gender}
-            onChange={this.handleChange('gender')}
-          />{gender}
-        </div>
-      );
-    })
-  }
+  
 
   render() {
     const { firstName, lastName, email, birthdate } = this.state;
