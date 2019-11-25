@@ -1,55 +1,26 @@
-import React, {useEffect, useState,memo, useRef} from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Hyperlink from './HyperlinkHook';
+import Instructions from './InstructionsHook';
 
 const App = () => {
-    const _varGlobalRef = useRef('');
-    const [value, setValue] = useState ('Learn Rect');
-    const [compare, setCompare] =useState('')
-    //componentDidMouth
-    useEffect(() => {
-        console.log('componentDidMount')
-        setTimeout(() => {
-          console.log('setState')
-          setValue('Learn React Now')
-        },3000)
-        setTimeout(() => {
-          _varGlobalRef.current = 'Please';
-        }, 4000)
-        setTimeout(() => {
-          console.log('setState compare')
-          setCompare('')
-        }, 5000);
+    const [showInstructions,setShowInstruccions] = useState(true)
 
-    }, [])
-    
-    //componentDidUpdate
-    useEffect(() => {
-        console.log('componentDidUpdate')
-    });
-    // componentDid Update solo cuando value cambia
-    useEffect(() => {
-        console.log('componentDidUpdate value',value)
-    }, [value]);
-
-
+    const handleHide = () => {
+        setShowInstruccions(false)
+    }
     return (
-    <div className="App">
-    <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-        Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {`${value} ${_varGlobalRef.current}`}
-      </a>
-    </header>
-  </div>
-  )
-}
-export default memo(App);
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          {showInstructions && <Instructions />}
+          <Hyperlink onHide={handleHide} showInstructions={showInstructions} />
+        </header>
+      </div>
+    );
+  }
+   
+ 
+
+export default App ;
