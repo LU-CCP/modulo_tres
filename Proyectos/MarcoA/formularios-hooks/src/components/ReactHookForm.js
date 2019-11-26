@@ -6,6 +6,7 @@ const genders = ["Male", "Female", "Other"];
 
 const Function = () => {
     const { register, handleSubmit } = useForm();
+
     const onSubmit = (data) => {
         const { firstName, lastName, email, gender, birthdate } = data;
         alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`)
@@ -13,7 +14,7 @@ const Function = () => {
 
     return (
         <div className='App'>
-            <form className='App-Form' onSubmit={handleSubmit}>
+            <form className='App-Form' onSubmit={handleSubmit(onSubmit)}>
                 <input className='App-Form-Item' required name='firstName' ref={register} />
                 <input className='App-Form-Item' required name='lastName' ref={register} />
                 <input className='App-Form-Item' required type='email' name='email' ref={register} />
