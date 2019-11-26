@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import HyperlinkHook from './HyperlinkHook';
 import InstructionsHook from './InstructionsHook';
+import Hola from './hola';
 
 
 const AppHook=()=>{
@@ -21,7 +22,13 @@ const AppHook=()=>{
           <img src={logo} className="App-logo" alt="logo" />
           {showInstructions && <InstructionsHook />}
           <HyperlinkHook onHide={handleHide} showInstructions={showInstructions} />
+          <Hola></Hola>
         </header>
+
+        
+
+
+
         </div>
     )
 
