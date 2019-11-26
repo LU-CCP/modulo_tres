@@ -6,7 +6,10 @@ class App extends React.Component {
     super(props);
     this.state={
       firstname: '',
-      lastname: ''
+      lastname: '',
+      email:'',
+      genero:'',
+      fechaNac:''
     }
 
   }
@@ -17,18 +20,21 @@ class App extends React.Component {
   }
 
   handleSubmit = () =>{
-    const { firstname, lastname, email } = this.state;
-    alert(`${firstname} ${lastname} ${email}`)
+    const { firstname, lastname, email,genero, fechaNac } = this.state;
+    alert(`${firstname} ${lastname} ${email} ${genero} ${fechaNac}`)
   }
 
   render() {
-    const { firstname, lastname, email } = this.state;
+    const { firstname, lastname, email, fechaNac } = this.state;
     return (
       <div className="App">
         <form className="Form" onSubmit={this.handleSubmit}>
-          <input required value = {firstname} onChange={this.handleChange('firstname')}/>
-          <input required value = {lastname} onChange={this.handleChange('lastname')}/>
-          <input required  type='email' value = {email} onChange={this.handleChange('email')}/>
+          Nombre<input required value = {firstname} onChange={this.handleChange('firstname')}/>
+          Apellido<input required value = {lastname} onChange={this.handleChange('lastname')}/>
+          E-mail<input required  type='email' value = {email} onChange={this.handleChange('email')}/>
+          Masculino<input required  type='radio' name= 'genero' value = 'Masculino' checked={this.state.genero==='Masculino'} onChange={this.handleChange('genero')}/>
+          Femenino<input required  type='radio' name= 'genero' value = 'Femenino' checked={this.state.genero==='Femenino'} onChange={this.handleChange('genero')}/>
+          Fecha de Nacimiento<input required  type='date' value = {fechaNac} onChange={this.handleChange('fechaNac')}/>
     <button type='submit'>{'Submit'}</button>
         </form>
       </div>
