@@ -1,4 +1,5 @@
 import React from 'react';
+
 import logo from './logo.svg';
 import './App.css';
 import Hyperlink from './Hyperlink';
@@ -14,16 +15,21 @@ class App extends React.Component {
 
   handleHide = () => {
     this.setState({ showInstructions: false });
-  }
+  };
 
   render() {
     const { showInstructions } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          {value && <Instructions />}
-          <Hyperlink onHide={this.handleHide} showInstructions={showInstructions} />
+      <div className='App'>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
+
+          {showInstructions && <Instructions />}
+
+          <Hyperlink
+            onHide={this.handleHide}
+            showInstructions={showInstructions}
+          />
         </header>
       </div>
     );
