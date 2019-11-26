@@ -47,7 +47,7 @@ const Function = () =>  {
   }
 
   const handleSubmit = () => {
-    alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`)
+    alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`) 
   }
 
   const renderGendersMap = () => {
