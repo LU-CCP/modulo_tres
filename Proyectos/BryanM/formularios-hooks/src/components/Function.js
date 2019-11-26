@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../App.css';
 
 const genders = ['male', 'female', 'other'];
 
@@ -11,6 +12,25 @@ const Function = () =>  {
 
     
   const handleChange = (key) => ({ target: { value }}) => {
+    switch (key) {
+      case 'firstName':
+          setFirstName(value)
+          break;
+      case 'lastName':
+          setLastName(value)
+          break;
+      case 'email':
+          setEmail(value)
+          break;
+      case 'gender':
+          setGender(value)
+          break;
+      case 'birthdate':
+          setBirthdate(value)
+          break;
+      default:
+        break;
+    }
   }
 
   const handleSubmit = () => {
@@ -36,15 +56,15 @@ const Function = () =>  {
 
   return (
     <div className='App'>
-      <form className='App-Form' onSubmit={handleSubmit}>
-        <input className='App-Form-Item' required value={firstName} onChange={handleChange('firstName')} />
-        <input className='App-Form-Item' required value={lastName} onChange={handleChange('lastName')} />
-        <input className='App-Form-Item' required type='email' value={email} onChange={handleChange('email')} />
-        {renderGendersMap()}
-        <input className='App-Form-Item' required type='date' value={birthdate} onChange={handleChange('birthdate')} />
-        <button className='App-Form-Item' type='submit'>{'Submit'}</button>
-      </form>
-    </div>
+        <form className='App-Form' onSubmit={handleSubmit}>
+          <input className='App-Form-Item' required value={firstName} onChange={handleChange('firstName')} />
+          <input className='App-Form-Item' required value={lastName} onChange={handleChange('lastName')} />
+          <input className='App-Form-Item' required type='email' value={email} onChange={handleChange('email')} />
+          {renderGendersMap()}
+          <input className='App-Form-Item' required type='date' value={birthdate} onChange={handleChange('birthdate')} />
+          <button className='App-Form-Item' type='submit'>{'Submit'}</button>
+        </form>
+      </div>
   );
 }
 
