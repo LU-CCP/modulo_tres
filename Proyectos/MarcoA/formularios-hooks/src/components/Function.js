@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import '../App.css';
 const genders = ['male', 'female', 'other'];
 
 const Function = () =>  {
