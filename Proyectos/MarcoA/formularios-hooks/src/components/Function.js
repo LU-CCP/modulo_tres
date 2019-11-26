@@ -1,16 +1,36 @@
 import React, { useState } from 'react';
 import '../App.css';
+import { breakStatement } from '@babel/types';
 const genders = ['male', 'female', 'other'];
 
-const Function = () =>  {
+const Function = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [birthdate, setBirthdate] = useState('');
 
-    
-  const handleChange = (key) => ({ target: { value }}) => {
+
+  const handleChange = (key) => ({ target: { value } }) => {
+    switch (key) {
+      case 'firstName':
+        setFirstName(value)
+        break;
+      case 'lastName':
+        setLastName(value)
+        break;
+      case 'email':
+        setEmail(value)
+        break;
+      case 'gender':
+        setGender(value)
+        break;
+      case 'birthdate':
+        setBirthdate(value)
+        break;
+      default:
+        break;
+    }
   }
 
   const handleSubmit = () => {
@@ -21,14 +41,14 @@ const Function = () =>  {
     return genders.map((gender) => {
       return (
         <div key={gender}>
-          <input 
-            className='App-Form-Item' 
-            name='genders' 
-            required 
-            type='radio' 
+          <input
+            className='App-Form-Item'
+            name='genders'
+            required
+            type='radio'
             value={gender}
-            onChange={handleChange('gender')} 
-            />{gender}
+            onChange={handleChange('gender')}
+          />{gender}
         </div>
       );
     })
