@@ -15,7 +15,7 @@ const Function = () =>  {
     switch (key) {
         case 'firstName':
           setFirstName(value)
-          //console.log('setFirstName', value)
+          console.log('setFirstName', value)
           break;
         case 'lastName':
           setLastName(value)
@@ -28,6 +28,7 @@ const Function = () =>  {
           break;
         case 'birthdate':
           setBirthdate(value)
+          //console.log(value)
           break;
       default:
         break;
