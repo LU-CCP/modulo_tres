@@ -1,0 +1,9 @@
+Crear un formulario que permita ingresar la siguiente información:
+	- Nombre
+	- Apellido
+	- Email
+	- Genero (radio button)
+	- Fecha de nacimiento
+
+Debe validar los campos como requeridos y el email.
+Al presionar el boton enviar la información se debe mostrar en una alerta.
