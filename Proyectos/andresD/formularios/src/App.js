@@ -31,24 +31,27 @@ render(){
   return (
     <div className="App">
       <form className='Form' onSubmit={this.handleSubmit}>
-     <input value = {firstName} onChange={this.handleChange('firstName')} required/> 
+    
+      Nombre: <input id="nombre" value = {firstName} onChange={this.handleChange('firstName')} required/> 
+     
+     
+      Apellido: <input value = {lastName} onChange={this.handleChange('lastName')} required/>
+    
+      Email: <input type="email"value = {email} onChange={this.handleChange('email')} required />
 
-     <input value = {lastName} onChange={this.handleChange('lastName')}/>
-
-     <input type="email"value = {email} onChange={this.handleChange('email')} />
-
-     <p>Genero:</p> 
+     Genero:
      <div>
 
-     <input type="radio" name="genero" id="masculino"  value={genero[0]} onChange={this.handleChange('genero')}></input>
+     <input type="radio" name="genero" id="masculino"  value={genero[0]} onChange={this.handleChange('genero')} required></input>
      <label htmlFor='masculino'>{'Masculino'}</label>
 
 
-     <input type="radio" name="genero" id="femenino"  value={genero[1]} onChange={this.handleChange('genero')}></input>
+     <input type="radio" name="genero" id="femenino"  value={genero[1]} onChange={this.handleChange('genero')} required></input>
      <label htmlFor='femenino'>{'Femenino'}</label>
      </div>
-
-     <input type="date" id="fechaNac" value ={fechaNac} onChange={this.handleChange('fechaNac')}></input>
+     <br></br>
+     Fecha Nacimiento: 
+     <input type="date" id="fechaNac" value ={fechaNac} onChange={this.handleChange('fechaNac')} required></input>
 
 
   <button type='submit'> {'Submit'}</button>

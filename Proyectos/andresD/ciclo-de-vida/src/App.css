@@ -20,13 +20,3 @@
 .App-link {
   color: #09d3ac;
 }
-
-.Input{
-  width: 200px;
-}
-
-.Form{
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-}
