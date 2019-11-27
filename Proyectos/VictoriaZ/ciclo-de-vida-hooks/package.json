@@ -11,7 +11,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js,.jsx .",
+    "lint:fix": "eslint --fix --ext .js,.jsx .",
+    "pretty": "prettier --write **/*.{css,html,js,json,jsx}"
   },
   "eslintConfig": {
     "extends": "react-app"
