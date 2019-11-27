@@ -1,5 +1,6 @@
-import { applyMiddleWare, createStore, compose } from "redux";
-import { type } from "os";
+import { applyMiddleware, createStore, compose } from 'redux';
+
+import createRootReducer from './native/reducers';
 
 function configureStore() {
   const enhancers = [];
@@ -10,25 +11,27 @@ function configureStore() {
   } = window;
 
   if (
-    NODE_ENV === "development" &&
-    typeof reduxDevToolsExtension === "function"
+    NODE_ENV === 'development' &&
+    typeof reduxDevToolsExtension === 'function'
   ) {
     enhancers.push(reduxDevToolsExtension());
   }
 
-  if (NODE_ENV === "production" && typeof reactDevToolsExtension === "object") {
+  if (NODE_ENV === 'production' && typeof reactDevToolsExtension === 'object') {
     Object.keys(reactDevToolsExtension).forEach(key => {
       reactDevToolsExtension[key] =
-        typeof reactDevToolsExtension[key] === "function" ? () => {} : null;
+        typeof reactDevToolsExtension[key] === 'function' ? () => {} : null;
     });
   }
+
   const middlewares = [];
   const composedEnhancers = compose(
-    applyMiddleWare(...middlewares),
+    applyMiddleware(...middlewares),
     ...enhancers
   );
 
-  const store = createStore(() => ({}), composedEnhancers);
+  const rootReducer = createRootReducer();
+  const store = createStore(rootReducer, composedEnhancers);
 
   return { store };
 }
