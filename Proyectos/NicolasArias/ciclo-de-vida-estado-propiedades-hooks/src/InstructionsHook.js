@@ -1,19 +1,18 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 const Instructions = () => {
-    useEffect(() => {
-        return() =>{
-            console.log('Instructions componentWillUnmount')
-        }
-    }, []);
+  // eslint-disable-next-line arrow-body-style
+  useEffect(() => {
+    return () => {
+      console.log('Instructions componentWillUnmount');
+    };
+  }, []);
 
-    //Return useEffect es equivalente al componentWillUnmount
-
-    return (
+  return (
     <p>
-        Edit <code>src/App.js</code> and save to reload.
+      Edit <code>src/App.js</code> and save to reload.
     </p>
-    );
-}
-  
+  );
+};
+
 export default Instructions;
