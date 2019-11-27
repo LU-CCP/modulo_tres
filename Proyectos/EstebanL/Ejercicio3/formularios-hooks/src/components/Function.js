@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import "../App.css";
 const genders = ['male', 'female', 'other'];
 
 const Function = () =>  {
@@ -10,7 +11,28 @@ const Function = () =>  {
   const [birthdate, setBirthdate] = useState('');
 
     
-  const handleChange = (key) => ({ target: { value }}) => {
+  const handleChange = key => ({ target: { value }}) => {
+console.log(key);
+    switch (key) {
+      case 'firstName':
+        setFirstName(value)
+        break;
+        case 'lastName':
+        setLastName(value)        
+        break;
+        case 'email':        
+        setEmail(value)        
+        break;
+        case 'gender':       
+        setGender(value)        
+        break;
+        case 'birthdate':        
+        setBirthdate(value)        
+        break;
+      default:
+        break;
+    }
+
   }
 
   const handleSubmit = () => {
