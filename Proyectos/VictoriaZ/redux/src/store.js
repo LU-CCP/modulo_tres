@@ -1,5 +1,7 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 
+import createRootReducer from './native/actions/reducers';
+
 function configureStore() {
   // habilitar solo para modo desarrollador
   const enhancers = [];
@@ -35,7 +37,8 @@ function configureStore() {
     ...enhancers
   );
 
-  const store = createStore(() => ({}), composedEnhancers);
+  const rootReducer = createRootReducer();
+  const store = createStore(rootReducer, composedEnhancers);
 
   return { store };
 }
