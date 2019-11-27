@@ -1,52 +1,55 @@
-import React, { useEffect, memo, useState, useRef} from 'react';
+/* eslint-disable react/destructuring-assignment */
+import React, { useEffect, memo, useState, useRef } from 'react';
 
-const HyperlinkHook = (props) => {
-    const _varGlobalRef = useRef('')
-    const [value, setValue] = useState('Learn React')
-    const [compare, setCompare] = useState('')
-    const [showInstructions, setShowInstructions] = useState(true)
+const HyperlinkHook = props => {
+  const _varGlobalRef = useRef('');
+  const [value, setValue] = useState('Learn React');
+  // eslint-disable-next-line no-unused-vars
+  const [compare, setCompare] = useState('');
+  const [showInstructions, setShowInstructions] = useState(true);
 
-    useEffect(() => {
-        if (showInstructions !== props.showInstructions){
-            setShowInstructions(props.showInstructions)
-        }
-    }, [props.showInstructions])
+  useEffect(() => {
+    if (showInstructions !== props.showInstructions) {
+      setShowInstructions(props.showInstructions);
+    }
+  }, [props.showInstructions, showInstructions]);
 
-    useEffect(() => {
-        console.log('Hyperlink componentDidMount')
+  useEffect(() => {
+    console.log('Hyperlink componentDidMount');
     setTimeout(() => {
-      console.log('Hyperlink setState')
+      console.log('Hyperlink setState');
       setValue('Learn React Now!');
-    }, 3000)
+    }, 3000);
     setTimeout(() => {
       _varGlobalRef.current = 'Please';
-    }, 4000)
+    }, 4000);
     setTimeout(() => {
-      console.log('Hyperlink setState compare')
+      console.log('Hyperlink setState compare');
       setCompare('');
-      const { onHide }  = props;
+      const { onHide } = props;
+
       onHide();
-    }, 5000)
-    }, [])
+    }, 5000);
+  }, [props]);
 
-    useEffect(() => {
-        console.log('Hyperlink componentDidUpdate')
-    }, [])
+  useEffect(() => {
+    console.log('Hyperlink componentDidUpdate');
+  }, []);
 
-    return (
-        <div>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {`${value} ${_varGlobalRef.current}`}
-          </a>
-          {!showInstructions && <p>Can you see the instructions?</p>}
-        </div>
-      );
-}
+  return (
+    <div>
+      <a
+        className='App-link'
+        href='https://reactjs.org'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {`${value} ${_varGlobalRef.current}`}
+      </a>
+      {!showInstructions && <p>Can you see the instructions?</p>}
+    </div>
+  );
+};
 
 // shouldComponentUpdate recordar que memo retorna lo contrario ya que la pregunta es al reves
 export default memo(HyperlinkHook);
