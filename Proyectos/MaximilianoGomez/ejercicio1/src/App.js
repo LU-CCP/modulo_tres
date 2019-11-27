@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-const genders = ['male', 'female', 'other']
+const genders = ["male", "female", "other"];
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
+      firstName: "",
+      lastName: "",
+      email: "",
       gender: null,
-      birthdate: ''
+      birthdate: ""
     };
   }
 
-  handleChange = (key) => ({ target: { value }}) => {
+  handleChange = key => ({ target: { value } }) => {
     this.setState({ [key]: value });
-  }
+  };
 
   handleSubmit = () => {
     const { firstName, lastName, email, gender, birthdate } = this.state;
-    alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`)
-  }
+    alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`);
+  };
 
   renderGendersFor = () => {
     const gendersJSX = [];
@@ -32,64 +32,94 @@ class App extends Component {
       gendersJSX.push(
         <div key={gender}>
           <input
-            className='App-Form-Item'
-            name='genders'
+            className="App-Form-Item"
+            name="genders"
             required
-            type='radio'
+            type="radio"
             value={gender}
-            onChange={this.handleChange('gender')} />{gender}
+            onChange={this.handleChange("gender")}
+          />
+          {gender}
         </div>
       );
     }
     return gendersJSX;
-  }
+  };
 
-  renderGendersForEach = () =>{
+  renderGendersForEach = () => {
     const gendersJSX = [];
-    genders.forEach((gender) => {
+    genders.forEach(gender => {
       gendersJSX.push(
         <div key={gender}>
           <input
-            className='App-Form-Item'
-            name='genders'
+            className="App-Form-Item"
+            name="genders"
             required
-            type='radio'
+            type="radio"
             value={gender}
-            onChange={this.handleChange('gender')} />{gender}
+            onChange={this.handleChange("gender")}
+          />
+          {gender}
         </div>
       );
     });
-    return gendersJSX
-  }
+    return gendersJSX;
+  };
 
   // el forEach es un nivel mejor que el for tradicional y Map es mejor que forEach
-  renderGenderMap =() =>{
-    return genders.map((gender) => {
-      return(
-          <div key={gender}>
-            <input
-              className='App-Form-Item'
-              name='genders'
-              required
-              type='radio'
-              value={gender}
-              onChange={this.handleChange('gender')} />{gender}
-          </div>
-        );
-    })
-  }
+  renderGenderMap = () => {
+    return genders.map(gender => {
+      return (
+        <div key={gender}>
+          <input
+            className="App-Form-Item"
+            name="genders"
+            required
+            type="radio"
+            value={gender}
+            onChange={this.handleChange("gender")}
+          />
+          {gender}
+        </div>
+      );
+    });
+  };
 
   render() {
     const { firstName, lastName, email, birthdate } = this.state;
     return (
-      <div className='App'>
-        <form className='App-Form' onSubmit={this.handleSubmit}>
-          <input className='App-Form-Item' required value={firstName} onChange={this.handleChange('firstName')} />
-          <input className='App-Form-Item' required value={lastName} onChange={this.handleChange('lastName')} />
-          <input className='App-Form-Item' required type='email' value={email} onChange={this.handleChange('email')} />
+      <div className="App">
+        <form className="App-Form" onSubmit={this.handleSubmit}>
+          <input
+            className="App-Form-Item"
+            required
+            value={firstName}
+            onChange={this.handleChange("firstName")}
+          />
+          <input
+            className="App-Form-Item"
+            required
+            value={lastName}
+            onChange={this.handleChange("lastName")}
+          />
+          <input
+            className="App-Form-Item"
+            required
+            type="email"
+            value={email}
+            onChange={this.handleChange("email")}
+          />
           {this.renderGenderMap()}
-          <input className='App-Form-Item' required type='date' value={birthdate} onChange={this.handleChange('birthdate')} />
-          <button className='App-Form-Item' type='submit'>{'Submit'}</button>
+          <input
+            className="App-Form-Item"
+            required
+            type="date"
+            value={birthdate}
+            onChange={this.handleChange("birthdate")}
+          />
+          <button className="App-Form-Item" type="submit">
+            {"Submit"}
+          </button>
         </form>
       </div>
     );
