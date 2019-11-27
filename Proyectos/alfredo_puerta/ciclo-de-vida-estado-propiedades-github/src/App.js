@@ -1,9 +1,10 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from 'react';
 
-import Hyperlink from "./Hyperlink2";
-import Instructions from "./Instructions";
+import logo from './logo.svg';
+
+import './App.css';
+import Hyperlink from './Hyperlink2';
+import Instructions from './Instructions';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,10 +20,11 @@ class App extends React.Component {
 
   render() {
     const { showInstructions } = this.state;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className='App'>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
           {showInstructions && <Instructions />}
           <Hyperlink
             onHide={this.handleHide}

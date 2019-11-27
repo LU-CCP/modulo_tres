@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 const Instructions = () => {
   useEffect(() => {
-    console.log("Instructions componentDidMount");
+    console.log('Instructions componentDidMount');
 
     return () => {
-      console.log("Instructions componentWillUnmount");
+      console.log('Instructions componentWillUnmount');
     };
   }, []);
 

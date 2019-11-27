@@ -1,51 +1,50 @@
-import React, { useEffect, useState, useRef, memo } from "react";
+import React, { useEffect, useState, useRef, memo } from 'react';
 
 // de props vienen todas las propiedades anterior como this
 const Hyperlink = props => {
-  const _varGlobalRef = useRef("");
-  const [value, setValue] = useState("Learn React");
-  const [compare, setCompare] = useState("");
+  const _varGlobalRef = useRef('');
+  const [value, setValue] = useState('Learn React');
+  const [setCompare] = useState('');
   const [showInstructions, setShowInstructions] = useState(true);
 
-  useEffect(
-    () => {
-      if (showInstructions !== props.showInstructions) {
-        setShowInstructions(props.showInstructions);
-      }
-    },
-    [props.showInstructions]
-  );
+  useEffect(() => {
+    if (showInstructions !== props.showInstructions) {
+      setShowInstructions(props.showInstructions);
+    }
+  }, [props.showInstructions, showInstructions]);
 
   useEffect(() => {
-    console.log("Hyperlink componentDidMount");
+    console.log('Hyperlink componentDidMount');
     setTimeout(() => {
-      console.log("Hyperlink setState");
-      setValue("Learn React Now!");
+      console.log('Hyperlink setState');
+      setValue('Learn React Now!');
     }, 3000);
     setTimeout(() => {
-      _varGlobalRef.current = "Please";
-      console.log("Hyperlink forceUpdate");
+      _varGlobalRef.current = 'Please';
+      console.log('Hyperlink forceUpdate');
     }, 4000);
     setTimeout(() => {
-      console.log("Hyperlink setState compare");
-      setCompare("");
+      console.log('Hyperlink setState compare');
+      setCompare('');
       const { onHide } = props;
+
       onHide();
     }, 5000);
-  }, []);
+  }, [props, setCompare]);
 
   useEffect(() => {
-    console.log("HyperLink componentDidUpdate");
+    console.log('HyperLink componentDidUpdate');
   });
 
-  console.log("Hyperlink render");
+  console.log('Hyperlink render');
+
   return (
     <div>
       <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
+        className='App-link'
+        href='https://reactjs.org'
+        target='_blank'
+        rel='noopener noreferrer'
       >
         {`${value} ${_varGlobalRef.current}`}
       </a>
@@ -54,6 +53,8 @@ const Hyperlink = props => {
   );
 };
 
-//memo compara shouldComponentUpdate hace las comparaciones
-//shouldComponentUpdate recordar que memo retorna lo contrario ya que la pregunta es al reves
+/*
+memo compara shouldComponentUpdate hace las comparaciones
+shouldComponentUpdate recordar que memo retorna lo contrario ya que la pregunta es al reves
+*/
 export default memo(Hyperlink);
