@@ -1,20 +1,53 @@
 import React, { useState } from 'react';
 
-const genders = ['male', 'female', 'other'];
+import "../App.css";
+
+const genders = ['male', 'female', 'other']; //array con los generos
 
 const Function = () =>  {
-  const [firstName, setFirstName] = useState('');
+  const [firstName, setFirstName] = useState(''); //variables
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(null);
   const [gender, setGender] = useState('');
   const [birthdate, setBirthdate] = useState('');
 
     
-  const handleChange = (key) => ({ target: { value }}) => {
+  const handleChange = (key) => ({ target: { value }}) => { //cambio de estado
+
+    switch (key) {
+      case 'firstName':
+
+        setFirstName(value) 
+        
+        break;
+
+        case 'lastName':
+
+        setLastName(value)
+        
+        break;
+          case 'email':
+            setEmail(value)
+        
+        break;
+          case 'gender':
+
+          setGender(value)
+        
+        break;
+        case 'birthdate':
+
+        setBirthdate(value)
+        
+        break;
+    
+      default:
+        break;
+    }
   }
 
   const handleSubmit = () => {
-    alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`)
+    alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`) 
   }
 
   const renderGendersMap = () => {
