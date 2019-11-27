@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 
-import createRootReducer from './native/actions/reducers';
+import createRootReducer from './native/reducers';
 
 function configureStore() {
   // habilitar solo para modo desarrollador
