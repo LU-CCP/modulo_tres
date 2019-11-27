@@ -1,0 +1,24 @@
+Crear una pagina que muestre una lista de distintos menús de comida y permita discriminar si te gusta o no.
+
+1.- La pagina debe disponer de lo siguiente:
+	- Titulo
+	- Contadores de likes y dislikes
+	- Lista base con botones que permitan dar like y dislike
+	- Lista de platos con likes
+	- Lista de platos con dislikes
+
+2.- Se deben crear 2 acciones
+	- Enviar likes
+	- Enviar diskes
+
+3.- Se debe crear un reducer que contenga
+	- Lista base (previamente cargada)
+	- Lista de likes
+	- Lista de dislikes
+	- Contadores de likes
+	- Contadores de dislikes
+
+4.- Consideraciones
+Al presionar like o dislike se debe sumar el contador y agregar
+el ítem a la lista que corresponda, así como también
+se debe filtrar la lista principal quitando el elemento al que se le dio clic.
