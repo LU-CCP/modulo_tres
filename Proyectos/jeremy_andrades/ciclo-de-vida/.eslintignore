@@ -1,7 +1,0 @@
-# node_modules ignored by default
-node_modules/
-
-# other ignored directories
-public/
-build/
-src/serviceWorker.js
