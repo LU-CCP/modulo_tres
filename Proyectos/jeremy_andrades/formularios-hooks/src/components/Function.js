@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../App.css';
 
 import '../App.css'
 const genders = ['male', 'female', 'other'];
@@ -12,6 +13,7 @@ const Function = () =>  {
 
     
   const handleChange = (key) => ({ target: { value }}) => {
+<<<<<<< HEAD:Base/formularios-hooks/src/components/Function.js
     console.log(value);
     switch (key) {
       case 'firstName':
@@ -28,6 +30,23 @@ const Function = () =>  {
         break;
       case 'birthdate':
         setBirthdate(value);
+=======
+    switch (key) {
+      case 'firstName':
+        setFirstName(value)
+        break;
+      case 'lastName':
+        setLastName(value)
+        break;
+      case 'email':
+        setEmail(value)
+        break;
+      case 'gender':
+        setGender(value)
+        break;
+      case 'birthdate':
+        setBirthdate(value)
+>>>>>>> master:Proyectos/jeremy_andrades/formularios-hooks/src/components/Function.js
         break;
       default:
         break;

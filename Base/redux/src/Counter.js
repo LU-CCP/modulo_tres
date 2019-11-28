@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import {
   increment,
   decrement,
   incrementAsync,
   decrementAsync
-} from "./native/actions/counter";
+} from './native/actions/counter';
 
 class Counter extends Component {
   render() {
@@ -15,24 +15,24 @@ class Counter extends Component {
       isIncrementing,
       isDecrementing,
       onIncrement,
-      onDecrement,
       onIncrementAsync,
+      onDecrement,
       onDecrementAsync
     } = this.props;
 
     return (
       <div>
         <h1>Redux is awesome</h1>
-        <p>Count: </p>
+        <p>Count: {count}</p>
         <div>
           <button onClick={onIncrement}>Increment</button>
-          <button disabled={isIncrementing} onClick={onIncrementAsync}>
+          <button onClick={onIncrementAsync} disabled={isIncrementing}>
             Increment Async
           </button>
         </div>
         <div>
           <button onClick={onDecrement}>Decrement</button>
-          <button disabled={isDecrementing} onClick={onDecrementAsync}>
+          <button onClick={onDecrementAsync} disabled={isDecrementing}>
             Decrement Async
           </button>
         </div>
