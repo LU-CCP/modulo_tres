@@ -18,9 +18,9 @@ const List = () => {
     [dispatch]
   );
 
-  const renderItem = pet => <p>{pet}</p>;
+  const renderItem = menu => <p>{menu}</p>;
 
-  const renderMenu = (pet, index) => (
+  const renderMenu = (menu, index) => (
     <div
       style={{
         display: 'flex',
@@ -30,7 +30,7 @@ const List = () => {
         width: 400
       }}
     >
-      <p style={{ width: 300 }}>{pet}</p>
+      <p style={{ width: 300 }}>{menu}</p>
       <button onClick={handleSendLike(index)}>Like</button>
       <button onClick={handleSendDislike(index)}>Dislike</button>
     </div>
