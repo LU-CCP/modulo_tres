@@ -26,12 +26,13 @@ function configureStore() {
   }
 
   const middlewares = [];
-  const composedEnhancers = compose(
+  const composeEnhancers = compose(
     applyMiddleware(...middlewares),
     ...enhancers
   );
   const rootReducer = createRootReducer();
-  const store = createStore(rootReducer, composedEnhancers);
+
+  const store = createStore(rootReducer, composeEnhancers);
 
   return { store };
 }
