@@ -19,8 +19,17 @@ const List = () => {
 
   const renderMenu = () =>
     menu.map((menus, index) => (
-      <div key={menus}>
-        {menus}
+      <div
+        key={menus}
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '400'
+        }}
+      >
+        <p style={{ width: 300 }}>{menus}</p>
         <button onClick={handleSendLike(index)}> Like</button>
         <button onClick={handleSendDislike(index)}> Dislike</button>
       </div>
@@ -36,7 +45,7 @@ const List = () => {
     <div
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <div>
+      <div style={{ width: 600 }}>
         <fieldset>
           <h1> Menús</h1>
 
@@ -50,11 +59,11 @@ const List = () => {
         </fieldset>
       </div>
       <div>
-        <fieldset>
+        <fieldset style={{ float: 'left', width: 270 }}>
           <h1>Menu Like</h1>
           {renderMenuLike()}
         </fieldset>
-        <fieldset>
+        <fieldset style={{ float: 'right', width: 270 }}>
           <h1>Menu Dislike</h1>
           {renderMenuDislike()}
         </fieldset>
