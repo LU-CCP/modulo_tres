@@ -1,13 +1,15 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 
-import { store } from '../store';
-
-import Home from './Home';
+import { store, history } from '../store';
+import Routes from '../routes';
 
 const App = () => (
   <Provider store={store}>
-    <Home />
+    <ConnectedRouter history={history}>
+      <Routes />
+    </ConnectedRouter>
   </Provider>
 );
 
