@@ -14,8 +14,14 @@ const INITIAL_STATE = {
   isDecrementing: false
 };
 
+// const increment2 = state => ({
+//   ...state,
+//   count: state.count + 1,
+//   isIncrementing: false
+// });
+
+// equivalente a increment2
 const increment = produce(draft => {
-  // draft.count = draft.count += 1;
   draft.count += 1;
   draft.isIncrementing = false;
 });
@@ -25,7 +31,6 @@ const incrementAsync = produce(draft => {
 });
 
 const decrement = produce(draft => {
-  // draft.count = draft.count - 1;
   draft.count -= 1;
   draft.isDecrementing = false;
 });
