@@ -4,8 +4,13 @@ import { connect } from 'react-redux';
 import {
   increment,
   decrement,
+<<<<<<< HEAD
   decrementAsynt,
   incrementAsync
+=======
+  incrementAsync,
+  decrementAsync
+>>>>>>> master
 } from './native/actions/counter';
 
 class Counter extends Component {
@@ -15,17 +20,28 @@ class Counter extends Component {
       isIncrementing,
       isDecrementing,
       onIncrement,
+<<<<<<< HEAD
       onDecrement,
       onIncrementAsync,
+=======
+      onIncrementAsync,
+      onDecrement,
+>>>>>>> master
       onDecrementAsync
     } = this.props;
 
     return (
       <div>
         <h1>Redux is awesome</h1>
+<<<<<<< HEAD
         <p>Count:{count}</p>
         <div>
           <button onClick={onIncrement}>{onIncrement}Increment</button>
+=======
+        <p>Count: {count}</p>
+        <div>
+          <button onClick={onIncrement}>Increment</button>
+>>>>>>> master
           <button onClick={onIncrementAsync} disabled={isIncrementing}>
             Increment Async
           </button>
@@ -40,6 +56,10 @@ class Counter extends Component {
     );
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 const mapStateToProps = ({ counter }) => ({
   count: counter.count,
   isIncrementing: counter.isIncrementing,
@@ -54,7 +74,11 @@ const mapDispatchToProps = dispatch => ({
   },
   onDecrement: () => dispatch(decrement()),
   onDecrementAsync: () => {
+<<<<<<< HEAD
     dispatch(decrementAsynt());
+=======
+    dispatch(decrementAsync());
+>>>>>>> master
     setTimeout(() => dispatch(decrement()), 3000);
   }
 });

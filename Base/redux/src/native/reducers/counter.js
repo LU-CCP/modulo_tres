@@ -24,14 +24,20 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         isIncrementing: true
       };
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     case DECREMENT:
       return {
         ...state,
         count: state.count - 1,
         isDecrementing: false
       };
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     case DECREMENT_ASYNC:
       return {
         ...state,
