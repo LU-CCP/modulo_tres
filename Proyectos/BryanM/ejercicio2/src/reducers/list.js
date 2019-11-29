@@ -20,10 +20,14 @@ const INITIAL_STATE = {
 
 const sendLike = produce((draft, { index }) => {
   draft.likes += 1;
+  draft.likeMenus.push(draft.menus[index]);
+  draft.menus = draft.menus.filter((p, i) => i !== index);
 });
 
 const sendDislike = produce((draft, { index }) => {
   draft.dislikes += 1;
+  draft.dislikeMenus.push(draft.menus[index]);
+  draft.menus = draft.menus.filter((p, i) => i !== index);
 });
 
 const reducer = createReducer(INITIAL_STATE, {
