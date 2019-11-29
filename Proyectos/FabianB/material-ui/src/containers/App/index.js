@@ -3,12 +3,12 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 
 import { store, history } from '../../store';
-import Routes from '../../routes';
+import Root from '../Root';
 
 const App = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Routes />
+      <Root />
     </ConnectedRouter>
   </Provider>
 );
