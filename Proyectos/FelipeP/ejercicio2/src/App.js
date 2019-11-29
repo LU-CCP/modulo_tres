@@ -1,5 +1,15 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 
-const App = () => <div>Ejercicio 2</div>;
+import configureStore from './store';
+import List from './List';
+
+const { store } = configureStore();
+
+const App = () => (
+  <Provider store={store}>
+    <List />
+  </Provider>
+);
 
 export default App;
