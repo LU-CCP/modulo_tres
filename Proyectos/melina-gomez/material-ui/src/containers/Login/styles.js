@@ -13,6 +13,12 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundImage: `url(${loginBg})`,
+    [theme.breakpoints.down('md')]: {
+      backgroundPosition: '25% 75%'
+    },
+    [theme.breakpoints.up('lg')]: {
+      backgroundPosition: 'center'
+    },
     backgroundPosition: 'center'
   },
   paper: {
