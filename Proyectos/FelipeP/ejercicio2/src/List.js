@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { sendLike, sendDislike } from './actions/list';
+import './custom.css';
 
 const List = () => {
   const dispatch = useDispatch();
@@ -21,15 +22,7 @@ const List = () => {
   const renderItem = menu => <p>{menu}</p>;
 
   const renderMenu = (menu, index) => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: 400
-      }}
-    >
+    <div className='div-foods'>
       <p style={{ width: 300 }}>{menu}</p>
       <button onClick={handleSendLike(index)}>Like</button>
       <button onClick={handleSendDislike(index)}>Dislike</button>
