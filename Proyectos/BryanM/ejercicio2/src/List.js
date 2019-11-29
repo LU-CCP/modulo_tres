@@ -9,8 +9,6 @@ const List = () => {
     ({ list }) => list
   );
 
-  const renderItem = pet => <p>{pet}</p>;
-
   const handleSendLike = useCallback(index => () => dispatch(sendLike(index)), [
     dispatch
   ]);
@@ -19,6 +17,7 @@ const List = () => {
     index => () => dispatch(sendDislike(index)),
     [dispatch]
   );
+  const renderItem = pet => <p>{pet}</p>;
 
   const renderMenu = (pet, index) => (
     <div
@@ -32,7 +31,7 @@ const List = () => {
     >
       <p style={{ width: 300 }}>{pet}</p>
       <button onClick={handleSendLike(index)}>Like</button>
-      <button onClick={handleSendDislike(index)}>Like</button>
+      <button onClick={handleSendDislike(index)}>Dislike</button>
     </div>
   );
 
