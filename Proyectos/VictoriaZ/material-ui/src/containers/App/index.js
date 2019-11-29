@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 
 import { store, history } from '../../store';
-import Routes from '../../routes';
+import Routes from '../Root';
 
 const App = () => (
   <Provider store={store}>
