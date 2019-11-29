@@ -36,7 +36,7 @@ function configureStore() {
   const rootReducer = createRootReducer(history);
   const store = createStore(rootReducer, composedEnhancers);
 
-  return { store };
+  return { store, history };
 }
 
 export default configureStore;

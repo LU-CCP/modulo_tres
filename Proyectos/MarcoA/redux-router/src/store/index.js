@@ -1,5 +1,5 @@
 import configureStore from './store';
 
-const { store } = configureStore();
+const { store, history } = configureStore();
 
-export { store };
+export { store, history };
