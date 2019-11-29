@@ -33,10 +33,10 @@ function configureStore() {
     applyMiddleware(...middlewares),
     ...enhancers
   );
-  const rootReducer = createRootReducer();
+  const rootReducer = createRootReducer(history);
   const store = createStore(rootReducer, composedEnhancers);
 
-  return { store };
+  return { store, history };
 }
 
 export default configureStore;
