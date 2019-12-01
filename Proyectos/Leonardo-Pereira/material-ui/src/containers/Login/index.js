@@ -10,17 +10,19 @@ const Login = () => {
     <Container className={classes.container} maxWidth={false}>
       <Grid className={classes.grid}>
         <Paper className={classes.paper}>
-          <h1>Sin in</h1>
-          <TextField className={classes.item} variant='outlined' label='User' />
+          <h1>Inicio de sesión</h1>
           <TextField
             className={classes.item}
             variant='outlined'
-            label='Password'
+            label='Usuario'
+          />
+          <TextField
+            className={classes.item}
+            variant='outlined'
+            label='Contraseña'
             type='password'
           />
-          <Button className={classes.item} variant='outlined'>
-            Login
-          </Button>
+          <Button variant='outlined'>Logear</Button>
         </Paper>
       </Grid>
     </Container>
