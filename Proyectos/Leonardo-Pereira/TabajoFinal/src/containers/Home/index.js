@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { Button, Container, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
-import { Link } from 'react-router-dom';
 
 import { RANDOM, USERS } from '../../routes/paths';
 

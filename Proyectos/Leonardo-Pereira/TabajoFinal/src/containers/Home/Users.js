@@ -1,13 +1,30 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { goBack } from 'connected-react-router';
 
+import useMount from '../../hooks/useMount';
+import jsonApi from '../../services/jsonApi';
+
 const Users = () => {
+  const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
+  const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
+
+  useMount(async () => {
+    const { data } = await jsonApi().getUsers();
+
+    if (Array.isArray) {
+      setUsers(data);
+    }
+  });
 
   return (
     <div>
-      <h1>Listado de personas </h1>
+      <h1>Listado de Usuarios </h1>
+      <Button variant='contained' color='primary' onClick={handleGoBack}>
+        Go Back
+      </Button>
     </div>
   );
 };
