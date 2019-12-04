@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, Container, Grid, Paper } from '@material-ui/core';
 import { push } from 'connected-react-router';
 
