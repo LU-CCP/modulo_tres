@@ -1,25 +1,39 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   container: {
-    backgroundColor: '#282c34',
-    minHeight: '100vh',
+    paddingLeft: 0,
+    paddingRight: 0
+  },
+  grid: {
     display: 'flex',
-    flexDirection: 'column',
+    height: '100vh',
     alignItems: 'center',
     justifyContent: 'center',
-    color: '#FFF'
+    [theme.breakpoints.down('md')]: {
+      backgroundPosition: '25% 75%'
+    },
+    [theme.breakpoints.up('lg')]: {
+      backgroundPosition: 'center'
+    }
   },
-  logo: {
-    height: '40vmin'
+  paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: 300,
+    padding: theme.spacing(4),
+    opacity: 0.9
   },
-  title: {
-    color: '#09d3ac',
-    textAlign: 'center',
-    marginBottom: 20
+  users: {
+    color: 'white',
+    backgroundColor: '#C30B42',
+    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2)
   },
-  link: {
-    color: '#09d3ac'
+  random: {
+    backgroundColor: '#6C90F7',
+    marginRight: '10px',
+    color: 'white'
   }
 }));
 

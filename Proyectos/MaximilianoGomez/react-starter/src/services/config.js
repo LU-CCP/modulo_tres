@@ -1,16 +1,16 @@
-const TIMEOUTS = {
-  GLOBAL: 20e3
-};
+import { create } from 'apisauce';
 
 const config = {
-  baseURL: null,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  },
-  timeout: TIMEOUTS.GLOBAL
+  baseURL: 'https://randomuser.me/'
 };
 
-export { TIMEOUTS };
+const createApi = () => {
+  const { get } = create(config);
+  const getUsers = () => get();
 
-export default config;
+  return {
+    getUsers
+  };
+};
+
+export default createApi;

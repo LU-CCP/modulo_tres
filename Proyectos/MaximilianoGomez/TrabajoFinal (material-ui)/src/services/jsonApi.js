@@ -4,13 +4,13 @@ const config = {
   baseURL: 'https://randomuser.me/'
 };
 
-const RandomUsers = () => {
+const createApi = () => {
   const { get } = create(config);
-  const getUsers = () => get();
+  const getUsers = () => get('users');
 
   return {
     getUsers
   };
 };
 
-export default RandomUsers;
+export default createApi;
