@@ -1,11 +1,8 @@
 import { applyMiddleware, createStore, compose } from 'redux';
+import { routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 
-<<<<<<< HEAD
-// import createRootReducer from './native/reducers';
-import createRootReducer from './custom/reducers';
-=======
-import createRootReducer from './reducers';
->>>>>>> eec3be26ef71ea660c72eeacdc52037dd80db725
+import createRootReducer from '../reducers';
 
 function configureStore() {
   const enhancers = [];
@@ -29,15 +26,17 @@ function configureStore() {
     });
   }
 
-  const middlewares = [];
+  const history = createBrowserHistory();
+  const reduxRouterMiddleware = routerMiddleware(history);
+  const middlewares = [reduxRouterMiddleware];
   const composedEnhancers = compose(
     applyMiddleware(...middlewares),
     ...enhancers
   );
-  const rootReducer = createRootReducer();
+  const rootReducer = createRootReducer(history);
   const store = createStore(rootReducer, composedEnhancers);
 
-  return { store };
+  return { store, history };
 }
 
 export default configureStore;
