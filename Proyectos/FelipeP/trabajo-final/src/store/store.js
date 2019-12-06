@@ -1,7 +1,9 @@
 import { applyMiddleware, createStore, compose } from 'redux';
+import { routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 
-// import createRootReducer from './native/reducers';
-import createRootReducer from './custom/reducers';
+import createRootReducer from '../reducers';
+import { VOID_FUNC } from '../config/constants';
 
 function configureStore() {
   const enhancers = [];
@@ -21,19 +23,21 @@ function configureStore() {
   if (NODE_ENV === 'production' && typeof reactDevToolsExtension === 'object') {
     Object.keys(reactDevToolsExtension).forEach(key => {
       reactDevToolsExtension[key] =
-        typeof reactDevToolsExtension[key] === 'function' ? () => {} : null;
+        typeof reactDevToolsExtension[key] === 'function' ? VOID_FUNC : null;
     });
   }
 
-  const middlewares = [];
+  const history = createBrowserHistory();
+  const reduxRouterMiddleware = routerMiddleware(history);
+  const middlewares = [reduxRouterMiddleware];
   const composedEnhancers = compose(
     applyMiddleware(...middlewares),
     ...enhancers
   );
-  const rootReducer = createRootReducer();
+  const rootReducer = createRootReducer(history);
   const store = createStore(rootReducer, composedEnhancers);
 
-  return { store };
+  return { store, history };
 }
 
 export default configureStore;

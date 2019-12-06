@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import list from './list';
+import counter from './counter';
 
 function createRootReducer() {
-  const rootReducer = combineReducers({ list });
+  const rootReducer = combineReducers({ counter });
 
   return rootReducer;
 }
