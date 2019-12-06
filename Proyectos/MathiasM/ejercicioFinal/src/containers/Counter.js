@@ -13,6 +13,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import { goBack } from 'connected-react-router';
+import { MODAL } from '../routes/paths';
+import { push } from 'connected-react-router';
+
 
 import { dropUsuariosCargados } from '../actions/counter';
 
@@ -23,11 +26,16 @@ const Counter = () => {
   const dispatch = useDispatch();
   const { datosApi } = useSelector(({ counter }) => counter);
 
+  console.log('datillos', datosApi);
+
   const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
   const handleDelete = useCallback(
     index => () => dispatch(dropUsuariosCargados(index)),
     [dispatch]
   );
+  const handleNavigate = useCallback(path => () => dispatch(push(path)), [
+    dispatch
+  ]);
 
   return (
     <div>
@@ -51,7 +59,7 @@ const Counter = () => {
               />
               <ListItemSecondaryAction>
                 <IconButton edge='end' aria-label='edit'>
-                  <EditIcon className={classes.iconEdit} variant='contained' />
+                  <EditIcon className={classes.iconEdit} variant='contained' onClick={handleNavigate(MODAL)} />
                 </IconButton>{' '}
                 <IconButton edge='end' aria-label='save'>
                   <DeleteIcon

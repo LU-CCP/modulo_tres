@@ -3,7 +3,7 @@ import { Button, Container, Grid, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 
-import { ABOUT, COUNTER, MODAL } from '../routes/paths';
+import { ABOUT, COUNTER } from '../routes/paths';
 
 import useStyles from './styles';
 
@@ -34,14 +34,6 @@ const Home = () => {
               onClick={handleNavigate(COUNTER)}
             >
               USERS
-            </Button>
-            <Button
-              className={classes.button}
-              color='secondary'
-              variant='contained'
-              onClick={handleNavigate(MODAL)}
-            >
-              Modal
             </Button>
           </Paper>
         </Grid>

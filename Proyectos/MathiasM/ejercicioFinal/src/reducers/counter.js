@@ -9,12 +9,13 @@ const INITIAL_STATE = {
   api: []
 };
 
-const listaUsuarios = produce((draft, { index }) => {
-  draft.datosApi.push(index);
-});
 const dropUsuariosCargados = produce((draft, { index }) => {
   console.log('index todo', index);
   draft.datosApi.splice(index.index, 1);
+});
+const listaUsuarios = produce((draft, { index }) => {
+  draft.datosApi.push(index);
+  // dropUsuariosCargados.apply(draft);
 });
 
 const reducer = createReducer(INITIAL_STATE, {

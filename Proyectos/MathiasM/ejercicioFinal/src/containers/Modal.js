@@ -1,66 +1,95 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+import React, { Fragment, useCallback } from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import useForm from 'react-hook-form';
+import { useSelector, useDispatch } from 'react-redux';
+import { goBack } from 'connected-react-router';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
 
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+export default function FormDialog() {
+  const [open, setOpen] = React.useState(true);
+  const {register, handleSubmit, errors} = useForm();
+  const dispatch = useDispatch();
 
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
-  };
-}
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
-  }
-}));
-
-export default function SimpleModal() {
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
+  const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
 
+  const onSubmit = (data,e) =>{
+    const { firstName,lastName, email } = data;
+    //alert(`${firstName} ${lastName} ${email} `);
+    console.log(data)
+    //handleGoBack()
+    e.preventDefault();
+    console.log(data);
+}
+const { datosApi } = useSelector(({ counter }) => counter);
+console.log('datosModal',datosApi[0].name.first)
   return (
-    <div>
-      <button type='button' onClick={handleOpen}>
-        Open Modal
-      </button>
-      <Modal
-        aria-labelledby='simple-modal-title'
-        aria-describedby='simple-modal-description'
-        open={open}
-        onClose={handleClose}
-      >
-        <div style={modalStyle} className={classes.paper}>
-          <h2 id='simple-modal-title'>Text in a modal</h2>
-          <p id='simple-modal-description'>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
-          <SimpleModal />
-        </div>
-      </Modal>
-    </div>
+    <Fragment>
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <form className='App-Form' onSubmit={handleSubmit(onSubmit)} noValidate>
+        <DialogTitle id="form-dialog-title">Actualizar Datos</DialogTitle>
+        <DialogContent>
+          <TextField
+            error={!!errors.email}
+            autoFocus
+            margin="dense"
+            id="firstName"
+            name="firstName"
+            inputRef={register}
+            label="First Name"
+            type="text"
+            value={datosApi[0].name.first}
+            fullWidth
+          />
+          
+          <TextField
+            error
+            autoFocus
+            margin="dense"
+            id="lastName"
+            name="lastName"
+            inputRef={register}
+            label="Last Name"
+            type="text"
+            value={datosApi[0].name.last}
+            fullWidth
+            required
+            helperText="Last Name is required."
+          />
+          <TextField
+            error={!!errors.email}
+            autoFocus
+            margin="dense"
+            id="email"
+            name="email"
+            inputRef={register({
+              pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            })}
+            label="Email"
+            type="email"   
+            fullWidth
+            helperText="Email is required."
+          />
+          <p>{errors.email && "Invalid email address"}</p>
+        </DialogContent>
+        <DialogActions>
+          <Button type='submit' color="primary">
+            Save
+          </Button>
+        </DialogActions>
+        </form>
+      </Dialog>
+    </Fragment>
   );
 }

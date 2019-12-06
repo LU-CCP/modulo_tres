@@ -28,6 +28,10 @@ const About = () => {
   const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
   // const { random } = useSelector(({ counter }) => counter);
 
+  // random=
+  // console.log('api: ', api);
+  // console.log('random: ', random);
+
   useMount(async () => {
     const { data } = await jsonApi().getUsers();
     const { results } = data;
