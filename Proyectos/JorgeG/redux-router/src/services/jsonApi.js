@@ -1,13 +1,16 @@
 import { create } from 'apisauce';
 
 const config = {
-  baseURL: 'https://jsonplaceholder.typicode.com/'
+  baseURL: 'https://randomuser.me/'
 };
 
 const createApi = () => {
   const { get } = create(config);
 
-  const getUsers = () => get('users');
+  const getUsers = () =>
+    get(
+      'api/?format=pretty&results=50&inc=name,email,nat,login,picture&noinfo'
+    );
 
   return {
     getUsers

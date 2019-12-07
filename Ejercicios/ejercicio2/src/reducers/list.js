@@ -3,6 +3,7 @@ import produce from 'immer';
 
 import { SEND_LIKE, SEND_DISLIKE } from '../actions/list';
 
+console.log(SEND_LIKE);
 const INITIAL_STATE = {
   menus: ['arroz con pollo', 'lentejas', 'bistec a lo pobre', 'porotos'],
   likeMenus: [],

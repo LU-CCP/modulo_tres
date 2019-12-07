@@ -1,22 +1,38 @@
 import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  Button,
+  Container,
+  ListItemSecondaryAction,
+  IconButton,
+  Avatar,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Divider
+} from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { goBack } from 'connected-react-router';
 
-import { increment, decrement } from '../actions/counter';
+import useStyles from './styles';
 
 const Counter = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
-  const { count } = useSelector(({ counter }) => counter);
 
-  const handleIncrement = useCallback(() => dispatch(increment()), [dispatch]);
-
-  const handleDecrement = useCallback(() => dispatch(decrement()), [dispatch]);
+  const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
 
   return (
     <div>
-      <h1>Redux is awesome</h1>
-      <p>Count: {count}</p>
-      <button onClick={handleIncrement}>Increment</button>
-      <button onClick={handleDecrement}>Decrement</button>
+      <Container>
+        <Button
+          className={classes.button}
+          variant='contained'
+          onClick={handleGoBack}
+        >
+          ATRAS
+        </Button>
+      </Container>
     </div>
   );
 };
