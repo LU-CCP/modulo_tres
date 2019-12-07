@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Instructions extends Component {
   componentWillUnmount() {
-    console.log('Instructions componentWillUnmount')
+    console.log('Instructions componentWillUnmount');
   }
 
   render() {
