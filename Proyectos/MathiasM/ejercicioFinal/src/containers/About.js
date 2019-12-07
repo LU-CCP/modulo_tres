@@ -26,11 +26,6 @@ const About = () => {
   const [api, setUsers] = useState([]);
 
   const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
-  // const { random } = useSelector(({ counter }) => counter);
-
-  // random=
-  // console.log('api: ', api);
-  // console.log('random: ', random);
 
   useMount(async () => {
     const { data } = await jsonApi().getUsers();
@@ -42,8 +37,9 @@ const About = () => {
   });
 
   const handleSave = useCallback(
-    index => () => dispatch(listaUsuarios(index)),
-    [dispatch]
+    index => () =>
+      dispatch(listaUsuarios(index), console.log(api.splice(1, 1))),
+    [api, dispatch]
   );
 
   return (
