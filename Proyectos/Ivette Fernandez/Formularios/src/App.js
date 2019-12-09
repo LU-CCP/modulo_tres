@@ -2,37 +2,54 @@ import React from 'react';
 import './App.css';
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       firstName: '',
-      lastName:'',
-      email:''
+      lastName: '',
+      email: ''
     };
   }
 
-  handleChange = (key) => ({target:{value}}) =>
-  { console.log(key, this.state, value)
-    this.setState({[key]: value})
-  }
-  handleSubmit = () =>
-  {
-    const {firstName, lastName, email} = this.state;
-    alert(`${firstName} ${lastName} ${email}`)
-  }
-  render(){
-    const {firstName, lastName, email} = this.state;
-    return (
-    <div className="App">
-      <form className = 'Form' onSubmit = {this.handleSubmit}>
-      <input required value = {firstName} onChange = {this.handleChange('firstName')}/>
-      <input required value = {lastName} onChange = {this.handleChange('lastName')}/>
-      <input required type = 'email' value = {email} onChange = {this.handleChange('email')}/>
+  handleChange = key => ({ target: { value } }) => {
+    console.log(key, this.state, value);
+    this.setState({ [key]: value });
+  };
 
-    <button type = 'submit'>{'Submit'}</button>
-      </form>
-    </div>
-  );
+  handleSubmit = () => {
+    const { firstName, lastName, email } = this.state;
+
+    // eslint-disable-next-line no-alert
+    alert(`${firstName} ${lastName} ${email}`);
+  };
+
+  render() {
+    const { firstName, lastName, email } = this.state;
+
+    return (
+      <div className='App'>
+        <form className='Form' onSubmit={this.handleSubmit}>
+          <input
+            required
+            value={firstName}
+            onChange={this.handleChange('firstName')}
+          />
+          <input
+            required
+            value={lastName}
+            onChange={this.handleChange('lastName')}
+          />
+          <input
+            required
+            type='email'
+            value={email}
+            onChange={this.handleChange('email')}
+          />
+
+          <button type='submit'>Submit</button>
+        </form>
+      </div>
+    );
   }
 }
 
