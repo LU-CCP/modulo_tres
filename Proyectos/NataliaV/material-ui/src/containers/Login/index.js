@@ -1,44 +1,41 @@
-import React from 'react';
-import { Button, Container, Grid, Paper, TextField } from '@material-ui/core';
+import React, { useCallback } from 'react';
+import { Button, Container } from '@material-ui/core';
+import { push } from 'connected-react-router';
+import { useDispatch } from 'react-redux';
+
+import { ABOUT, COUNTER } from '../routes/paths';
 
 import useStyles from './styles';
 
 const Login = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleNavigate = useCallback(path => () => dispatch(push(path)), [
+    dispatch
+  ]);
 
   return (
-    <Container className={classes.Container} maxWidth={false}>
-      <Grid className={classes.grid}>
-        <Paper className={classes.paper}>
-          <TextField className={classes.item} variant='outlined' label='User' />
-          <TextField
-            className={classes.item}
-            variant='outlined'
-            label='Password'
-            type='password'
-          />
-          <Button className={classes.item} variant='outlined'>
-            Login
-          </Button>
-        </Paper>
-      </Grid>
+    <Container className={(classes.Container, classes.root)} maxWidth={false}>
+      <h1>Trabajofinal</h1>
+      <Button
+        onClick={handleNavigate(ABOUT)}
+        className={classes.item}
+        variant='contained'
+        color='primary'
+      >
+        RANDOM USERS
+      </Button>
+      <Button
+        onClick={handleNavigate(COUNTER)}
+        className={classes.item}
+        variant='contained'
+        color='secondary'
+      >
+        USERS
+      </Button>
     </Container>
   );
 };
-/* const Home = () => (
-  <div
-    style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    }}
-  >
-    <p>User</p>
-    <input />
-    <p>Password</p>
-    <input type='password' />
-    <button>Login</button>
-  </div>
-); */
 
 export default Login;

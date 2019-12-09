@@ -1,3 +1,5 @@
+import About from './About';
+import Counter from './counter';
 import Login from './Login';
 
-export { Login };
+export { About, Counter, Login };
