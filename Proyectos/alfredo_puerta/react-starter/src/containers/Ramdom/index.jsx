@@ -12,8 +12,7 @@ import {
   IconButton,
   Grid
 } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import HomeIcon from '@material-ui/icons/Home';
+import { Save, Home } from '@material-ui/icons';
 
 import { setRamdom, setSaveUsers } from '../../actions/users';
 import usersApi from '../../services/ramdom';
@@ -87,7 +86,7 @@ const Ramdom = () => {
         onClick={handleSendSave(index)}
         className={classes.margin}
       >
-        <DeleteIcon color='secondary' />
+        <Save color='secondary' />
       </IconButton>
     </ListItem>
   );
@@ -104,7 +103,7 @@ const Ramdom = () => {
                 onClick={handleGoback}
                 className={classes.Button}
               >
-                <HomeIcon color='primary' />
+                <Home color='primary' />
               </IconButton>
             </Typography>
           </div>
