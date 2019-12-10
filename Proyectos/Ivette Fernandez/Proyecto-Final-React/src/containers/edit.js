@@ -7,35 +7,21 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useForm from 'react-hook-form';
 
-const AlertDialog = () => {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+const AlertDialog = ({ open, onClose, onSubmit }) => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
 
   return (
     <div>
-      <Button variant='outlined' color='primary' onClick={handleClickOpen}>
-        Editar
-      </Button>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={onClose}
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
       >
-        <DialogTitle id='alert-dialog-title'>Editar Usuario</DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <DialogTitle id='alert-dialog-title'>Editar Usuario</DialogTitle>
+          <DialogContent>
+            <DialogContentText id='alert-dialog-description'>
               <input
                 type='text'
                 placeholder='Nombre'
@@ -58,17 +44,17 @@ const AlertDialog = () => {
                   ref={register({ required: true, pattern: /^\S+@\S+$/i })}
                 />
               </div>
-            </form>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color='primary'>
-            Guardar
-          </Button>
-          <Button onClick={handleClose} color='primary' autoFocus>
-            Cancelar
-          </Button>
-        </DialogActions>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={onSubmit} color='primary'>
+              Guardar
+            </Button>
+            <Button type='sumbit' color='primary' autoFocus>
+              Cancelar
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </div>
   );
