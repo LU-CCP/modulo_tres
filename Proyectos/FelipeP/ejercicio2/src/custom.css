@@ -1,0 +1,12 @@
+body {
+  background: #191919;
+  color: #fff;
+}
+.div-foods {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 400;
+  color: yellow;
+}
