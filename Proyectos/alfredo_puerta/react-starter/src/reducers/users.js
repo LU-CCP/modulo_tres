@@ -18,7 +18,8 @@ const setRamdom = produce(({ ramdomUsers }, { index }) => {
     ramdomUsers.push({
       first: item.name.first,
       last: item.name.last,
-      email: item.email
+      email: item.email,
+      picture: item.picture.large
     });
   });
 });

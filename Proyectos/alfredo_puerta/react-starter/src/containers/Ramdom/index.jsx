@@ -1,18 +1,29 @@
 import React, { useCallback } from 'react';
-import { goBack, push } from 'connected-react-router';
+import { goBack } from 'connected-react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Button } from '@material-ui/core';
+import {
+  makeStyles,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  Typography,
+  IconButton,
+  Grid
+} from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import HomeIcon from '@material-ui/icons/Home';
 
-import { USERS } from '../../routes/paths';
 import { setRamdom, setSaveUsers } from '../../actions/users';
 import usersApi from '../../services/ramdom';
 import { useMount } from '../../hooks';
-import { GO_BACK_MSG, USERS_MSG, SAVE_USER_MSG } from '../../config/messages';
+import { RAMDOM_USERS_MSG } from '../../config/messages';
 
 const Ramdom = () => {
   const dispatch = useDispatch();
 
-  const { ramdomUsers, saveUsers } = useSelector(({ users }) => users);
+  const { ramdomUsers } = useSelector(({ users }) => users);
 
   const handleGoback = useCallback(() => dispatch(goBack()), [dispatch]);
 
@@ -24,10 +35,24 @@ const Ramdom = () => {
     item => () => dispatch(setSaveUsers(item)),
     [dispatch]
   );
+  const useStyles = makeStyles(theme => ({
+    root: {
+      width: '100%',
+      backgroundColor: theme.palette.background.paper
+    },
+    margin: { margin: theme.spacing(1) },
+    inline: {
+      display: 'inline'
+    },
+    title: {
+      margin: theme.spacing(4, 4, 2)
+    },
+    Button: {
+      margin: theme.spacing(2)
+    }
+  }));
 
-  const handleNavigate = useCallback(path => () => dispatch(push(path)), [
-    dispatch
-  ]);
+  const classes = useStyles();
 
   useMount(async () => {
     const { data } = await usersApi().getUsers();
@@ -36,43 +61,57 @@ const Ramdom = () => {
       handleSetRamdom(data.results);
     }
   });
-  const renderMenu = (menu, index) => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: 400
-      }}
-    >
-      <p style={{ width: 300 }}>
-        {menu.first} {menu.last}
-      </p>
-      <Button onClick={handleSendSave(index)}>{SAVE_USER_MSG}</Button>
-    </div>
+
+  const renderUsers = (menu, index) => (
+    <ListItem alignItems='flex-start' key={menu.email}>
+      <ListItemAvatar>
+        <Avatar src={menu.picture} />
+      </ListItemAvatar>
+      <ListItemText
+        primary={`${menu.first} ${menu.last}`}
+        secondary={
+          <React.Fragment>
+            <Typography
+              component='span'
+              variant='body2'
+              className={classes.inline}
+              color='textPrimary'
+            >
+              {menu.email}
+            </Typography>
+          </React.Fragment>
+        }
+      />
+      <IconButton
+        aria-label='delete'
+        onClick={handleSendSave(index)}
+        className={classes.margin}
+      >
+        <DeleteIcon color='secondary' />
+      </IconButton>
+    </ListItem>
   );
 
   return (
-    <Container>
-      <Button onClick={handleGoback} variant='contained' color='primary'>
-        {GO_BACK_MSG}
-      </Button>
-      <Button
-        onClick={handleNavigate(USERS)}
-        variant='contained'
-        color='secondary'
-      >
-        {USERS_MSG}
-      </Button>
-
-      <div>{ramdomUsers.map(renderMenu)}</div>
-      <div>
-        {saveUsers.map(({ first }) => (
-          <p>{first}</p>
-        ))}
-      </div>
-    </Container>
+    <div className={classes.root}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={12}>
+          <div>
+            <Typography variant='h4' className={classes.title}>
+              {RAMDOM_USERS_MSG}
+              <IconButton
+                aria-label='home'
+                onClick={handleGoback}
+                className={classes.Button}
+              >
+                <HomeIcon color='primary' />
+              </IconButton>
+            </Typography>
+          </div>
+          <List className={classes.root}>{ramdomUsers.map(renderUsers)}</List>
+        </Grid>
+      </Grid>
+    </div>
   );
 };
 
