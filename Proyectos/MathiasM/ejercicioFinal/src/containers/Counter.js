@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Button,
   Avatar,
@@ -13,32 +13,47 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import { goBack } from 'connected-react-router';
-import { MODAL } from '../routes/paths';
-import { push } from 'connected-react-router';
-
 
 import { dropUsuariosCargados } from '../actions/counter';
 
+import FormDialog from './Modal';
 import useStyles from './styles';
 
 const Counter = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { datosApi } = useSelector(({ counter }) => counter);
-
-  console.log('datillos', datosApi);
+  const [openModal, setOpenModal] = useState(false);
+  const [user, setUser] = useState();
 
   const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
   const handleDelete = useCallback(
     index => () => dispatch(dropUsuariosCargados(index)),
     [dispatch]
   );
-  const handleNavigate = useCallback(path => () => dispatch(push(path)), [
-    dispatch
-  ]);
+
+  // const handleOpenModal = useCallback(
+  //   open => () => {
+  //     setOpenModal(open);
+  //   },
+  //   [setOpenModal]
+  // );
+
+  const handleUpdate = useCallback(
+    (open, nameObject, picture) => () => {
+      setOpenModal(open);
+      setUser(nameObject, picture);
+    },
+    [setOpenModal, setUser]
+  );
 
   return (
     <div>
+      <FormDialog
+        open={openModal}
+        onClose={handleUpdate(false)}
+        nameObject={user}
+      />
       <Button
         className={classes.button}
         variant='contained'
@@ -59,12 +74,16 @@ const Counter = () => {
               />
               <ListItemSecondaryAction>
                 <IconButton edge='end' aria-label='edit'>
-                  <EditIcon className={classes.iconEdit} variant='contained' onClick={handleNavigate(MODAL)} />
+                  <EditIcon
+                    className={classes.iconEdit}
+                    variant='contained'
+                    onClick={handleUpdate(name, email)}
+                  />
                 </IconButton>{' '}
                 <IconButton edge='end' aria-label='save'>
                   <DeleteIcon
                     color='secondary'
-                    onClick={handleDelete({ datosApi, index })}
+                    onClick={handleDelete({ index })}
                   />
                 </IconButton>
               </ListItemSecondaryAction>

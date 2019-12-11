@@ -37,54 +37,53 @@ const About = () => {
   });
 
   const handleSave = useCallback(
-    index => () =>
-      dispatch(listaUsuarios(index), console.log(api.splice(1, 1))),
+    index => () => {
+      dispatch(listaUsuarios(index));
+      setUsers(api.filter((p, i) => index.name !== p.name));
+    },
     [api, dispatch]
   );
 
   return (
-    console.log('api: ', api),
-    (
-      <Container className={classes.container} maxWidth={false}>
-        <Button
-          className={classes.button}
-          variant='contained'
-          onClick={handleGoBack}
-        >
-          Go Back
-        </Button>
-        <List className={classes.List}>
-          {api.map(({ login, email, name, picture }) => (
-            <ListItem className={classes.List} key={login.uuid}>
-              <ListItem alignItems='flex-start'>
-                <ListItemAvatar>
-                  <Avatar src={`${picture.thumbnail}`} alt='Avatar' />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={`${name.first}${' '}${name.last}`}
-                  secondary={email}
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge='end' aria-label='save'>
-                    <SaveIcon
-                      color='primary'
-                      onClick={handleSave({
-                        login,
-                        name,
-                        email,
-                        picture
-                      })}
-                    />
-                  </IconButton>
-                </ListItemSecondaryAction>
+    <Container className={classes.container} maxWidth={false}>
+      <Button
+        className={classes.button}
+        variant='contained'
+        onClick={handleGoBack}
+      >
+        Go Back
+      </Button>
+      <List className={classes.List}>
+        {api.map(({ login, email, name, picture }) => (
+          <ListItem className={classes.List} key={login.uuid}>
+            <ListItem alignItems='flex-start'>
+              <ListItemAvatar>
+                <Avatar src={`${picture.thumbnail}`} alt='Avatar' />
+              </ListItemAvatar>
+              <ListItemText
+                primary={`${name.first}${' '}${name.last}`}
+                secondary={email}
+              />
+              <ListItemSecondaryAction>
+                <IconButton edge='end' aria-label='save'>
+                  <SaveIcon
+                    color='primary'
+                    onClick={handleSave({
+                      name,
+                      email,
+                      login,
+                      picture
+                    })}
+                  />
+                </IconButton>
+              </ListItemSecondaryAction>
 
-                <ListItem />
-              </ListItem>
+              <ListItem />
             </ListItem>
-          ))}
-        </List>
-      </Container>
-    )
+          </ListItem>
+        ))}
+      </List>
+    </Container>
   );
 };
 
