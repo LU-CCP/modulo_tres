@@ -1,84 +1,106 @@
+/* eslint-disable no-alert */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable no-shadow */
+
 import React, { useState } from 'react';
 
-import "../App.css";
+import '../App.css';
 
-const genders = ['male', 'female', 'other']; //array con los generos
+const genders = ['male', 'female', 'other']; // array con los generos
 
-const Function = () =>  {
-  const [firstName, setFirstName] = useState(''); //variables
+const Function = () => {
+  const [firstName, setFirstName] = useState(''); // variables
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState(null);
   const [gender, setGender] = useState('');
   const [birthdate, setBirthdate] = useState('');
 
-    
-  const handleChange = (key) => ({ target: { value }}) => { //cambio de estado
+  const handleChange = key => ({ target: { value } }) => {
+    // cambio de estado
 
     switch (key) {
       case 'firstName':
+        setFirstName(value);
 
-        setFirstName(value) 
-        
         break;
 
-        case 'lastName':
+      case 'lastName':
+        setLastName(value);
 
-        setLastName(value)
-        
         break;
-          case 'email':
-            setEmail(value)
-        
-        break;
-          case 'gender':
+      case 'email':
+        setEmail(value);
 
-          setGender(value)
-        
         break;
-        case 'birthdate':
+      case 'gender':
+        setGender(value);
 
-        setBirthdate(value)
-        
         break;
-    
+      case 'birthdate':
+        setBirthdate(value);
+
+        break;
+
       default:
         break;
     }
-  }
+  };
 
   const handleSubmit = () => {
-    alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`) 
-  }
+    alert(`${firstName} ${lastName} ${email} ${gender} ${birthdate}`);
+  };
 
-  const renderGendersMap = () => {
-    return genders.map((gender) => {
-      return (
-        <div key={gender}>
-          <input 
-            className='App-Form-Item' 
-            name='genders' 
-            required 
-            type='radio' 
-            value={gender}
-            onChange={handleChange('gender')} 
-            />{gender}
-        </div>
-      );
-    })
-  }
+  const renderGendersMap = () =>
+    genders.map(gender => (
+      <div key={gender}>
+        <input
+          className='App-Form-Item'
+          name='genders'
+          required
+          type='radio'
+          value={gender}
+          onChange={handleChange('gender')}
+        />
+        {gender}
+      </div>
+    ));
 
   return (
     <div className='App'>
       <form className='App-Form' onSubmit={handleSubmit}>
-        <input className='App-Form-Item' required value={firstName} onChange={handleChange('firstName')} />
-        <input className='App-Form-Item' required value={lastName} onChange={handleChange('lastName')} />
-        <input className='App-Form-Item' required type='email' value={email} onChange={handleChange('email')} />
+        <input
+          className='App-Form-Item'
+          required
+          value={firstName}
+          onChange={handleChange('firstName')}
+        />
+        <input
+          className='App-Form-Item'
+          required
+          value={lastName}
+          onChange={handleChange('lastName')}
+        />
+        <input
+          className='App-Form-Item'
+          required
+          type='email'
+          value={email}
+          onChange={handleChange('email')}
+        />
         {renderGendersMap()}
-        <input className='App-Form-Item' required type='date' value={birthdate} onChange={handleChange('birthdate')} />
-        <button className='App-Form-Item' type='submit'>{'Submit'}</button>
+        <input
+          className='App-Form-Item'
+          required
+          type='date'
+          value={birthdate}
+          onChange={handleChange('birthdate')}
+        />
+        <button className='App-Form-Item' type='submit'>
+          {'Submit'}
+        </button>
       </form>
     </div>
   );
-}
+};
 
 export default Function;

@@ -14,8 +14,8 @@ const Formulario = ({ index, user }) => {
 
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = ({ firstName, lastName, mail }) => {
-    dispatch(editUser({ index, firstName, lastName, mail }));
+  const onSubmit = data => {
+    dispatch(editUser(index, data));
   };
 
   return (
@@ -25,7 +25,7 @@ const Formulario = ({ index, user }) => {
           <TextField
             variant='outlined'
             className={classes.item}
-            name='firstName'
+            name='first'
             inputRef={register({
               required: 'First Name is required'
             })}
@@ -37,7 +37,7 @@ const Formulario = ({ index, user }) => {
           <TextField
             className={classes.item}
             variant='outlined'
-            name='lastName'
+            name='last'
             inputRef={register({
               required: 'Last Name is required'
             })}
@@ -48,7 +48,7 @@ const Formulario = ({ index, user }) => {
           <TextField
             variant='outlined'
             className={classes.item}
-            name='mail'
+            name='email'
             inputRef={register({
               required: 'Required',
               pattern: {
@@ -76,7 +76,7 @@ const Formulario = ({ index, user }) => {
 };
 
 Formulario.propTypes = {
-  index: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
   user: PropTypes.object.isRequired
 };
 export default memo(Formulario);

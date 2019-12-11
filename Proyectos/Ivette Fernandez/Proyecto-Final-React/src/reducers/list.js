@@ -10,6 +10,7 @@ import {
 } from '../actions/guardar';
 
 const INITIAL_STATE = {
+  personEdit: null,
   personasGuardadas: [],
   personasTotal: [],
   deleteUsers: [],
@@ -34,11 +35,11 @@ const deleteUsers = produce((draft, { index }) => {
   console.log(draft.deleteUsers);
 });
 
-const editUsers = produce((draft, { index }) => {
-  draft.personasGuardadas[index] = draft.AlertDialog();
-
-  console.log(draft.personasGuardadas);
+const editUsers = produce((draft, { data }) => {
+  console.log(data);
+  draft.personEdit = data;
 });
+
 const reducer = createReducer(INITIAL_STATE, {
   [GUARDAR_PERSONA]: guardarPersona,
   [GUARDAR_TOTAL]: guardarTotal,

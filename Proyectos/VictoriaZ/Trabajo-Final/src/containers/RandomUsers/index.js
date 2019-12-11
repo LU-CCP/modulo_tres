@@ -15,7 +15,7 @@ import SaveIcon from '@material-ui/icons/Save';
 
 import { useMount } from '../../hooks';
 import { exampleApi } from '../../services';
-import { saveUser } from '../../actions/home';
+import { saveUser, setRandomUsers } from '../../actions/home';
 import { IconLabelTabs } from '../../components';
 
 import useStyles from './styles';
@@ -25,9 +25,10 @@ const RandomUsers = () => {
   const dispatch = useDispatch();
   const { randomUsers } = useSelector(({ home }) => home);
 
-  const handleSaveUser = useCallback(index => () => dispatch(saveUser(index)), [
-    dispatch
-  ]);
+  const handleSaveUser = useCallback(
+    (index, data) => () => dispatch(saveUser(index, data)),
+    [dispatch]
+  );
 
   useMount(async () => {
     const qs = { page: 1, results: 50 };
@@ -35,15 +36,15 @@ const RandomUsers = () => {
 
     const { results } = data;
 
-    results.map(randomUser =>
-      randomUsers.randomUsersList.push({
-        first: randomUser.name.first,
-        last: randomUser.name.last,
-        email: randomUser.email,
-        picture: randomUser.picture.thumbnail,
-        id: randomUser.login.uuid
-      })
-    );
+    const users = results.map(randomUser => ({
+      first: randomUser.name.first,
+      last: randomUser.name.last,
+      email: randomUser.email,
+      picture: randomUser.picture.thumbnail,
+      id: randomUser.login.uuid
+    }));
+
+    dispatch(setRandomUsers(users));
   }, []);
   const renderRandomUsers = () =>
     randomUsers.randomUsersList.map((randomUser, index) => (
@@ -59,7 +60,7 @@ const RandomUsers = () => {
 
           <Button
             className={classes.item}
-            onClick={handleSaveUser(index)}
+            onClick={handleSaveUser(index, randomUser)}
             startIcon={<SaveIcon />}
             color='primary'
           >
