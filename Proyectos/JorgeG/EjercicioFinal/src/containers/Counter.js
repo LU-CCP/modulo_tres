@@ -14,7 +14,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import { goBack } from 'connected-react-router';
 
-import { dropUsuariosCargados } from '../actions/counter';
+import { dropUsuariosCargados, setEditUser } from '../actions/counter';
 
 import FormDialog from './Modal';
 import useStyles from './styles';
@@ -22,8 +22,7 @@ import useStyles from './styles';
 const Counter = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { datosApi } = useSelector(({ counter }) => counter);
-  const [openModal, setOpenModal] = useState(false);
+  const { datosApi, editUser } = useSelector(({ counter }) => counter);
 
   console.log('datillos', datosApi);
 
@@ -37,18 +36,32 @@ const Counter = () => {
   // ]);
 
   const handleOpenModal = useCallback(
-    open => () => {
-      console.log('click en el boton');
-      setOpenModal(open);
+    (index, data) => () => {
+      dispatch(setEditUser(index, data));
     },
-    [setOpenModal]
+    [dispatch]
   );
 
-  console.log('openModal', openModal);
+  const handleCloseModal = useCallback(() => {
+    dispatch(setEditUser(-1, null));
+  }, [dispatch]);
+
+  const handleSubmit = useCallback(() => {}, []);
+
+  // if (editUser) {
+  //   !== undefined !== null !== '' !== NaN !== 0 !== false
+  // }
+
+  // const v = !!editUser.data;
 
   return (
     <div>
-      <FormDialog open={openModal} onClose={handleOpenModal(false)} />
+      <FormDialog
+        defaultValues={editUser.data}
+        open={!!editUser.data}
+        onClose={handleCloseModal}
+        onSubmit={handleSubmit}
+      />
       <Button
         className={classes.button}
         variant='contained'
@@ -72,7 +85,12 @@ const Counter = () => {
                   <EditIcon
                     className={classes.iconEdit}
                     variant='contained'
-                    onClick={handleOpenModal(true)}
+                    onClick={handleOpenModal(index, {
+                      login,
+                      email,
+                      name,
+                      picture
+                    })}
                   />
                 </IconButton>{' '}
                 <IconButton edge='end' aria-label='save'>

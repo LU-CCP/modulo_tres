@@ -2,21 +2,37 @@ import { createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions(
   {
-    listaUsuarios: ['index'],
-    dropUsuariosCargados: ['index']
+    setRandomUsers: ['data'],
+    listaUsuarios: ['index', 'data'],
+    dropUsuariosCargados: ['index'],
+    setEditUser: ['index', 'data']
   },
   {
     prefix: 'COUNTER/'
   }
 );
 
-const { listaUsuarios, dropUsuariosCargados } = Creators;
+const {
+  setRandomUsers,
+  setEditUser,
+  listaUsuarios,
+  dropUsuariosCargados
+} = Creators;
 
-const { LISTA_USUARIOS, DROP_USUARIOS_CARGADOS } = Types;
+const {
+  SET_RANDOM_USERS,
+  SET_EDIT_USER,
+  LISTA_USUARIOS,
+  DROP_USUARIOS_CARGADOS
+} = Types;
 
 export {
+  setRandomUsers,
+  setEditUser,
   listaUsuarios,
   dropUsuariosCargados,
+  SET_RANDOM_USERS,
+  SET_EDIT_USER,
   LISTA_USUARIOS,
   DROP_USUARIOS_CARGADOS
 };
