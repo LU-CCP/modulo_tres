@@ -1,6 +1,11 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 
+<<<<<<< HEAD
+// import createRootReducer from './native/reducers';
+import createRootReducer from './custom/reducers';
+=======
 import createRootReducer from './reducers';
+>>>>>>> eec3be26ef71ea660c72eeacdc52037dd80db725
 
 function configureStore() {
   const enhancers = [];
