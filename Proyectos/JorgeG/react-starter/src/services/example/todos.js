@@ -1,16 +1,17 @@
-import buildApi from '../api';
+import { create } from 'apisauce';
 
-import { URLS } from './config';
-
-const { REACT_APP_URL_EXAMPLE_API } = process.env;
+const config = {
+  baseURL: 'https://randomuser.me/'
+};
 
 const createApi = () => {
-  const { setBaseURL, get } = buildApi();
+  const { get } = create(config);
 
-  setBaseURL(REACT_APP_URL_EXAMPLE_API);
+  const getUsers = () =>
+    get('api/?format=pretty&results=50&inc=name,email,login,picture&noinfo');
 
   return {
-    getTodo: (id, config = {}) => get(`${URLS.todos.getTodo}${id}`, {}, config)
+    getUsers
   };
 };
 

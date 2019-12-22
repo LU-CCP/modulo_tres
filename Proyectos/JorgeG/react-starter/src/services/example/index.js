@@ -1,7 +1,7 @@
-import createTodos from './todos';
+import createApi from './todos';
 
 const exampleApi = {
-  todos: createTodos()
+  todos: createApi()
 };
 
 export default exampleApi;

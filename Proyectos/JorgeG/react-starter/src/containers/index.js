@@ -1,3 +1,6 @@
-import Example from './Example';
+import Login from './Login';
+import Perfil from './Perfil';
+import Tarjeta from './Tarjeta';
+import DatosPersonales from './DatosPersonales';
 
-export { Example };
+export { Login, Perfil, Tarjeta, DatosPersonales };
