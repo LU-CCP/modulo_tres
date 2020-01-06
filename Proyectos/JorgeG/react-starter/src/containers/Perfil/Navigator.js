@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,11 +9,33 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
-import PeopleIcon from '@material-ui/icons/People';
+import PersonIcon from '@material-ui/icons/Person';
 import BookIcon from '@material-ui/icons/Book';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import SettingsIcon from '@material-ui/icons/Settings';
+import { useDispatch } from 'react-redux';
+import { push } from 'connected-react-router';
 
-import useOpcion from '../../hooks/useOpcion';
+import { DATOSPERSONALES, TARJETA } from '../../routes/paths';
+
+const categories = [
+  {
+    id: 'Informacion',
+    children: [
+      { id: 'Mis Datos', icon: <PersonIcon />, active: DATOSPERSONALES },
+      { id: 'Mis Cursos', icon: <BookIcon />, active: TARJETA },
+      { id: 'Datos de Tesistas', icon: <SupervisorAccountIcon /> },
+      { id: 'Proyectos', icon: <AssignmentIcon /> },
+      { id: 'Publicaciones', icon: <LibraryBooksIcon /> }
+    ]
+  },
+  {
+    id: 'Opciones',
+    children: [{ id: 'Configuracion', icon: <SettingsIcon /> }]
+  }
+];
 
 const styles = theme => ({
   categoryHeader: {
@@ -28,7 +50,8 @@ const styles = theme => ({
     paddingBottom: 1,
     color: 'rgba(255, 255, 255, 0.7)',
     '&:hover,&:focus': {
-      backgroundColor: 'rgba(255, 255, 255, 0.08)'
+      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+      color: '#4fc3f7'
     }
   },
   itemCategory: {
@@ -49,17 +72,20 @@ const styles = theme => ({
   },
   itemIcon: {
     minWidth: 'auto',
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(1)
   },
   divider: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(1)
   }
 });
 
 function Navigator(props) {
   const { classes, ...other } = props;
+  const dispatch = useDispatch();
 
-  const { handleButtonBar } = useOpcion();
+  const handleNavigate = useCallback(path => () => dispatch(push(path)), [
+    dispatch
+  ]);
 
   return (
     <Drawer variant='permanent' {...other}>
@@ -67,7 +93,7 @@ function Navigator(props) {
         <ListItem
           className={clsx(classes.firebase, classes.item, classes.itemCategory)}
         >
-          {'Perfil'}
+          {'Jorge Gajardo'}
         </ListItem>
         <ListItem className={clsx(classes.item, classes.itemCategory)}>
           <ListItemIcon className={classes.itemIcon}>
@@ -81,67 +107,39 @@ function Navigator(props) {
             {'Mi cuenta'}
           </ListItemText>
         </ListItem>
-        <ListItem className={classes.categoryHeader}>
-          <ListItemText className={clsx(classes.itemCategory && classes.item)}>
-            {'Informacion'}
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          button
-          className={clsx(classes.item && classes.itemActiveItem)}
-          onClick={handleButtonBar(1)}
-        >
-          <ListItemIcon className={classes.itemIcon}>
-            <PeopleIcon />
-          </ListItemIcon>
 
-          <ListItemText
-            classes={{
-              primary: classes.itemPrimary
-            }}
-          >
-            {'Mis Datos'}
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          button
-          className={clsx(classes.item && classes.itemActiveItem)}
-          onClick={handleButtonBar(2)}
-        >
-          <ListItemIcon className={classes.itemIcon}>
-            <BookIcon />
-          </ListItemIcon>
-          <ListItemText
-            classes={{
-              primary: classes.itemPrimary
-            }}
-          >
-            {'Mis Cursos'}
-          </ListItemText>
-        </ListItem>
-        <ListItem className={classes.categoryHeader}>
-          <ListItemText className={clsx(classes.itemCategory && classes.item)}>
-            {'Opciones'}
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          button
-          className={clsx(classes.item && classes.itemActiveItem)}
-        >
-          <ListItemIcon className={classes.itemIcon}>
-            <SettingsIcon />
-          </ListItemIcon>
+        {categories.map(({ id, children }) => (
+          <React.Fragment key={id}>
+            <ListItem className={classes.categoryHeader}>
+              <ListItemText
+                classes={{
+                  primary: classes.categoryHeaderPrimary
+                }}
+              >
+                {id}
+              </ListItemText>
+            </ListItem>
+            {children.map(({ id: childId, icon, active }) => (
+              <ListItem
+                key={childId}
+                button
+                className={classes.item}
+                onClick={handleNavigate(active)}
+              >
+                <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>
+                <ListItemText
+                  classes={{
+                    primary: classes.itemPrimary
+                  }}
+                >
+                  {childId}
+                </ListItemText>
+              </ListItem>
+            ))}
 
-          <ListItemText
-            classes={{
-              primary: classes.itemPrimary
-            }}
-          >
-            {'Configuracion'}
-          </ListItemText>
-        </ListItem>
-
-        <Divider className={classes.divider} />
+            <Divider className={classes.divider} />
+          </React.Fragment>
+        ))}
       </List>
     </Drawer>
   );

@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
-import example from './example';
+import cambios from './cambios';
 
 function createRootReducer(history) {
   const router = connectRouter(history);
-  const rootReducer = combineReducers({ example, router });
+  const rootReducer = combineReducers({ cambios, router });
 
   return rootReducer;
 }

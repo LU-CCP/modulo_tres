@@ -8,7 +8,7 @@ const { Types, Creators } = createActions(
     setEditUser: ['index', 'data']
   },
   {
-    prefix: 'COUNTER/'
+    prefix: 'TARJETA/'
   }
 );
 

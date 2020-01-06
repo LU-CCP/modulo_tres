@@ -5,29 +5,19 @@ import {
   ThemeProvider,
   withStyles
 } from '@material-ui/core/styles';
+import { Container } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+// import Typography from '@material-ui/core/Typography';
+// import Link from '@material-ui/core/Link';
 
 // import Tarjeta from '../Tarjeta/Tarjeta';
-import DatosPersonales from '../DatosPersonales/DatosPersonales';
-import useOpcion from '../../hooks/useOpcion';
+// import DatosPersonales from '../DatosPersonales/DatosPersonales';
+// import useOpcion from '../../hooks/useOpcion';
+// import { TARJETA } from '../../routes/paths';
 
 import Navigator from './Navigator';
-
-function Copyright() {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        {'Edu-K'}
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Header from './Header';
 
 let theme = createMuiTheme({
   palette: {
@@ -64,7 +54,8 @@ theme = {
   overrides: {
     MuiDrawer: {
       paper: {
-        backgroundColor: '#18202c'
+        backgroundColor: '#18202c',
+        marginTop: '48px'
       }
     },
     MuiButton: {
@@ -92,7 +83,7 @@ theme = {
     MuiTab: {
       root: {
         textTransform: 'none',
-        margin: '0 16px',
+        margin: '0',
         minWidth: 0,
         padding: 0,
         [theme.breakpoints.up('md')]: {
@@ -108,7 +99,8 @@ theme = {
     },
     MuiTooltip: {
       tooltip: {
-        borderRadius: 4
+        borderRadius: 4,
+        backgroundColor: 'red'
       }
     },
     MuiDivider: {
@@ -139,16 +131,24 @@ theme = {
   }
 };
 
-const drawerWidth = 256;
+const drawerWidth = 200;
 const styles = {
   root: {
     display: 'flex',
-    minHeight: '100vh'
+    minHeight: '0vh'
   },
   drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0
+    [theme.breakpoints.up('xs')]: {
+      width: 800,
+      flexShrink: 0,
+      marginTop: '50px',
+      marginRight: 300
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: 800,
+      flexShrink: 0,
+      marginTop: '50px',
+      marginRight: 300
     }
   },
   app: {
@@ -158,17 +158,12 @@ const styles = {
   },
   main: {
     flex: 1,
-    padding: theme.spacing(1, 1),
-    background: '#eaeff1'
-  },
-  footer: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(5, 5),
     background: '#eaeff1'
   }
 };
 
 function Paperbase(props) {
-  const { opcion } = useOpcion();
   const { classes } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -177,41 +172,36 @@ function Paperbase(props) {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      {console.log(opcion, 'papeprpeprpa')}
-      <div className={classes.root}>
-        <CssBaseline />
-        <nav className={classes.drawer}>
-          <Hidden smUp implementation='js'>
-            {console.log(opcion, 'paperbase')}
-
-            <Navigator
-              PaperProps={{ style: { width: drawerWidth } }}
-              variant='temporary'
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-            />
-          </Hidden>
-          <Hidden xsDown implementation='css'>
-            <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-          </Hidden>
+    <Container>
+      <ThemeProvider theme={theme}>
+        <nav>
+          <Header onDrawerToggle={handleDrawerToggle} />
         </nav>
-        <div className={classes.app}>
-          <DatosPersonales onDrawerToggle={handleDrawerToggle} />
-          {console.log(opcion, 'paperbase')}
+        <div className={classes.root}>
+          <CssBaseline />
+          <nav className={classes.drawer}>
+            <Hidden smUp implementation='js'>
+              <Navigator
+                PaperProps={{ style: { width: drawerWidth } }}
+                variant='temporary'
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+              />
+            </Hidden>
+            <Hidden xsDown implementation='css'>
+              <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+            </Hidden>
+          </nav>
+          <div>
+            {/* <Tarjeta onDrawerToggle={handleDrawerToggle} /> */}
 
-          {/* {<Tarjeta onDrawerToggle={handleDrawerToggle} />} */}
-          {/* {opcion === 1 &&
-            ,
-            ( */}
-          <main className={classes.main}>{}</main>
-          {/* ))} */}
-          <footer className={classes.footer}>
-            <Copyright />
-          </footer>
+            {/* /* {<Tarjeta onDrawerToggle={handleDrawerToggle} />} */}
+
+            {/* <main className={classes.main}>{}</main> */}
+          </div>
         </div>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Container>
   );
 }
 

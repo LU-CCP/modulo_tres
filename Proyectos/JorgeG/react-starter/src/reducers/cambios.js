@@ -6,7 +6,7 @@ import {
   DROP_USUARIOS_CARGADOS,
   SET_RANDOM_USERS,
   SET_EDIT_USER
-} from '../actions/counter';
+} from '../actions/cambios';
 
 const INITIAL_STATE = {
   random: [],

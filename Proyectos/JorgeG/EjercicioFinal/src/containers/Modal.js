@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback } from 'react';
+import React, { Fragment } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -6,48 +6,36 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useForm from 'react-hook-form';
-import { useSelector, useDispatch } from 'react-redux';
-import { goBack } from 'connected-react-router';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { goBack } from 'connected-react-router';
 
-const FormDialog = props => {
+const FormDialog = ({ open, onClose, defaultValues, onSubmit }) => {
   // const [open, setOpen] = React.useState(false);
-  const { register, handleSubmit, errors } = useForm();
-  const dispatch = useDispatch();
+  const { register, handleSubmit, errors } = useForm({
+    defaultValues
+  });
+  // const dispatch = useDispatch();
 
-  console.log(props);
+  // const handleClickOpen = () => {
+  //   // setOpen(true);
+  // };
 
-  const handleClickOpen = () => {
-    // setOpen(true);
-  };
+  // const handleClose = () => {
+  //   onClose();
+  //   // setOpen(false);
+  // };
 
-  const handleClose = () => {
-    props.onClose();
-    // setOpen(false);
-  };
+  // const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
 
-  const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
+  // const onSubmit = data => {};
 
-  const onSubmit = (data, e) => {
-    const { firstName, lastName, email } = data;
+  // const { editUser } = useSelector(({ counter }) => counter);
 
-    // alert(`${firstName} ${lastName} ${email} `);
-    console.log(data);
-    // handleGoBack()
-    e.preventDefault();
-    console.log(data);
-  };
-
-  const { datosApi } = useSelector(({ counter }) => counter);
-
-  console.log('datosModal', datosApi[0].name.first);
+  // console.log('datosModal', datosApi[0].name.first);
 
   return (
     <Fragment>
-      <Dialog
-        open={props.open}
-        onClose={handleClose}
-        aria-labelledby='form-dialog-title'
-      >
+      <Dialog open={open} onClose={onClose} aria-labelledby='form-dialog-title'>
         <form className='App-Form' onSubmit={handleSubmit(onSubmit)} noValidate>
           <DialogTitle id='form-dialog-title'>Actualizar Datos</DialogTitle>
           <DialogContent>
@@ -55,32 +43,26 @@ const FormDialog = props => {
               error={!!errors.email}
               autoFocus
               margin='dense'
-              id='firstName'
-              name='firstName'
+              name='name.first'
               inputRef={register}
               label='First Name'
-              type='text'
-              value={datosApi[0].name.first}
+              // value={datosApi[0].name.first}
               fullWidth
             />
 
             <TextField
               error
-              autoFocus
               margin='dense'
-              id='lastName'
-              name='lastName'
+              name='name.last'
               inputRef={register}
               label='Last Name'
-              type='text'
-              value={datosApi[0].name.last}
+              // value={datosApi[0].name.last}
               fullWidth
               required
               helperText='Last Name is required.'
             />
             <TextField
               error={!!errors.email}
-              autoFocus
               margin='dense'
               id='email'
               name='email'

@@ -1,6 +1,18 @@
-import { isCancel, CancelToken } from 'apisauce';
+import { create } from 'apisauce';
 
-import exampleApi from './example';
-import { TIMEOUTS } from './config';
+const config = {
+  baseURL: 'https://randomuser.me/'
+};
 
-export { CancelToken, isCancel, exampleApi, TIMEOUTS };
+const createApi = () => {
+  const { get } = create(config);
+
+  const getUsers = () =>
+    get('api/?format=pretty&results=50&inc=name,email,login,picture&noinfo');
+
+  return {
+    getUsers
+  };
+};
+
+export default createApi;

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import {
   Button,
   Container,
@@ -11,10 +11,10 @@ import {
   ListItemText
 } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { goBack } from 'connected-react-router';
 
-import { listaUsuarios } from '../actions/counter';
+import { listaUsuarios, setRandomUsers } from '../actions/counter';
 import useMount from '../hooks/useMount';
 import jsonApi from '../services/jsonApi';
 
@@ -23,7 +23,7 @@ import useStyles from './styles';
 const About = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [api, setUsers] = useState([]);
+  const { api } = useSelector(({ counter }) => counter);
 
   const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
   // const { random } = useSelector(({ counter }) => counter);
@@ -36,17 +36,18 @@ const About = () => {
     const { data } = await jsonApi().getUsers();
     const { results } = data;
 
+    console.log(results);
+
     if (Array.isArray(results)) {
-      setUsers(results);
+      dispatch(setRandomUsers(results));
     }
   });
 
   const handleSave = useCallback(
-    index => () => {
-      dispatch(listaUsuarios(index));
-      setUsers(api.filter((value, i) => index.index !== i));
+    (index, data) => () => {
+      dispatch(listaUsuarios(index, data));
     },
-    [api, dispatch]
+    [dispatch]
   );
 
   return (
@@ -72,17 +73,12 @@ const About = () => {
                   secondary={email}
                 />
                 <ListItemSecondaryAction>
-                  <IconButton edge='end' aria-label='save'>
-                    <SaveIcon
-                      color='primary'
-                      onClick={handleSave({
-                        index,
-                        login,
-                        name,
-                        email,
-                        picture
-                      })}
-                    />
+                  <IconButton
+                    edge='end'
+                    aria-label='save'
+                    onClick={handleSave(index, { login, email, name, picture })}
+                  >
+                    <SaveIcon color='primary' />
                   </IconButton>
                 </ListItemSecondaryAction>
 

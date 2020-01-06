@@ -1,84 +1,316 @@
 import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-// import { TableC } from '@material-ui/core';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import { Container } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+// import FormControl from '@material-ui/core/FormControl';
+import { Container, Grid, TextField } from '@material-ui/core';
+// import EditIcon from '@material-ui/icons/Edit';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import { useDispatch, useSelector } from 'react-redux';
 
-import useOpcion from '../../hooks/useOpcion';
-
+// import FormDialog from '../Modal/Modal';
+// import { setEditUser } from '../../actions/cambios';
+// import Visibility from '@material-ui/icons/Visibility';
+// import VisibilityOff from '@material-ui/icons/VisibilityOff';
+// import InputAdornment from '@material-ui/core/InputAdornment';
+// import OutlinedInput  from '@material-ui/core/OutlinedInput';
 // import Paper from '@material-ui/core/Paper';
-// import Navigator from '../Perfil';
+import Paperbase from '../Perfil';
+import Copyright from '../Copyright';
 
-const StyledTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
-  },
-  body: {
-    fontSize: 14
-  }
-}))(TableCell);
-
-const StyledTableRow = withStyles(theme => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default
+const useStyles = makeStyles(theme => ({
+  container: {
+    marginLeft: 200,
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: 0
     }
+  },
+  divHidden: {
+    width: 256,
+    height: 256,
+    backgroundColor: 'white'
+  },
+  footer: {
+    position: '-webkit-sticky',
+    left: '0px',
+    bottom: '0px',
+    width: '100%',
+    height: '40px',
+    color: 'white'
+  },
+  card: {
+    minWidth: 275,
+    backgroundColor: '#232f3e',
+    marginBlock: '10px'
+  },
+  card_interior: {
+    marginTop: '5px',
+    minWidth: 275,
+    backgroundColor: '#eaeff1'
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center'
+  },
+  pos: {
+    marginBottom: 5,
+    fontWeight: 'bold'
+  },
+  grid: {
+    display: 'grid'
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // // [theme.breakpoints.down('xs')]: {
+    // //   gridTemplateColumns: '1fr'
+    // // },
+    // [theme.breakpoints.up('xs')]: {
+    //   backgroundPosition: 'center',
+    //   backgroundSize: 'cover',
+    //   backgroundColor: 'blue',
+    //   gridTemplateColumns: '200px 1fr'
+    // }
+  },
+  paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#B1B4B7',
+    maxWidth: 500,
+    padding: theme.spacing(4)
+  },
+  item: {
+    marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    margin: theme.spacing(1)
+  },
+  div: {
+    backgroundColor: 'black',
+    border: '3px solid black',
+    borderRadius: '10px'
+  },
+  button: {
+    backgroundColor: '#eaeff1'
   }
-}))(TableRow);
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9)
-];
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700
-  }
-});
+}));
 
 export default function DatosPersonales() {
   const classes = useStyles();
-  const { opcion } = useOpcion();
+  // const { editUser } = useSelector(({ cambios }) => cambios);
+  // // const [showPassword, setShowPassword] = useState(false);
+
+  // const [openModal, setOpenModal] = useState(false);
+
+  // const dispatch = useDispatch();
+
+  // const handleCloseModal = useCallback(() => {
+  //   dispatch(setEditUser(-1, null));
+  // }, [dispatch]);
+
+  // const handleClickShowPassword = () => {
+  //   setShowPassword(!showPassword);
+  // };
+
+  // const handleMouseDownPassword = event => {
+  //   event.preventDefault();
+  // };
+
+  // const handleSubmit = useCallback(() => {}, []);
+
+  // const handleOpenModal = useCallback(
+  //   (index, data) => () => {
+  //     dispatch(setEditUser(index, data));
+  //   },
+  //   [dispatch]
+  // );
 
   return (
-    <Container>
-      <Table className={classes.table} aria-label='customized table'>
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align='right'>Calories</StyledTableCell>
-            <StyledTableCell align='right'>Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align='right'>Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align='right'>Protein&nbsp;(g)</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component='th' scope='row'>
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align='right'>{row.calories}</StyledTableCell>
-              <StyledTableCell align='right'>{row.fat}</StyledTableCell>
-              <StyledTableCell align='right'>{row.carbs}</StyledTableCell>
-              <StyledTableCell align='right'>{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
+    <Container className={classes.container}>
+      <Paperbase />
+      {/* <FormDialog
+        defaultValues={editUser.data}
+        open={!!editUser.data}
+        onClose={handleCloseModal}
+        onSubmit={handleSubmit}
+      /> */}
+      <Grid className={classes.grid}>
+        <div>
+          <Card className={classes.card}>
+            <CardContent>
+              <div className={classes.div}>
+                <Typography
+                  className={classes.title}
+                  color='textSecondary'
+                  gutterBottom
+                >
+                  {'Mis Datos'}
+                </Typography>
+              </div>
+              <Card className={classes.card_interior}>
+                <CardContent>
+                  <Typography className={classes.pos} color='textSecondary'>
+                    {'Identificacion'}
+                  </Typography>
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Run'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Rol'
+                    color='primary'
+                    margin='dense'
+                  />
+                </CardContent>
+              </Card>
+              <Card className={classes.card_interior}>
+                <CardContent>
+                  <Typography className={classes.pos} color='textSecondary'>
+                    {'Nombre'}
+                  </Typography>
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Nombre'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Apellido Paterno'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Apellido Materno'
+                    color='primary'
+                    margin='dense'
+                  />
+                </CardContent>
+              </Card>
+              <Card className={classes.card_interior}>
+                <CardContent>
+                  <Typography className={classes.pos} color='textSecondary'>
+                    {'Academico'}
+                  </Typography>
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Titulo Profesional'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Postítulo'
+                    color='primary'
+                    margin='dense'
+                  />
+                </CardContent>
+              </Card>
+              <Card className={classes.card_interior}>
+                <CardContent>
+                  <Typography className={classes.pos} color='textSecondary'>
+                    {'Dirección'}
+                  </Typography>
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Nombre'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Calle'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Numero'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Comuna'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Region'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Pais'
+                    color='primary'
+                    margin='dense'
+                  />
+                </CardContent>
+              </Card>
+              <Card className={classes.card_interior}>
+                <CardContent>
+                  <Typography className={classes.pos} color='textSecondary'>
+                    {'Contacto'}
+                  </Typography>
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Fono'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Fono Urgencia'
+                    color='primary'
+                    margin='dense'
+                  />
+                  <TextField
+                    className={classes.item}
+                    variant='outlined'
+                    label='Correo'
+                    color='primary'
+                    margin='dense'
+                  />
+                </CardContent>
+              </Card>
+            </CardContent>
+            <CardActions>
+              <Button className={classes.button} size='small'>
+                {'Editar'}
+              </Button>
+            </CardActions>
+          </Card>
+        </div>
+      </Grid>
+
+      <div>
+        <footer className={classes.footer}>
+          <Copyright />
+        </footer>
+      </div>
     </Container>
   );
 }
