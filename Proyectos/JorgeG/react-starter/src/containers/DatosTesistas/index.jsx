@@ -1,1 +1,1 @@
-export { default } from './datosTesistas';
+export { default } from './DatosTesistas';

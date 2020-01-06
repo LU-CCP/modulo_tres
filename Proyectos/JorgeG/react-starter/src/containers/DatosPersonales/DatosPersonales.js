@@ -47,9 +47,10 @@ const useStyles = makeStyles(theme => ({
     marginBlock: '10px'
   },
   card_interior: {
-    marginTop: '5px',
-    minWidth: 275,
-    backgroundColor: '#eaeff1'
+    marginTop: '3px',
+    minWidth: 250,
+    backgroundColor: '#eaeff1',
+    padding: 0
   },
   title: {
     fontSize: 20,
@@ -58,7 +59,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center'
   },
   pos: {
-    marginBottom: 5,
+    marginBottom: 2,
     fontWeight: 'bold'
   },
   grid: {
@@ -160,6 +161,7 @@ export default function DatosPersonales() {
                     label='Run'
                     color='primary'
                     margin='dense'
+                    size='small'
                   />
                   <TextField
                     className={classes.item}
@@ -167,6 +169,7 @@ export default function DatosPersonales() {
                     label='Rol'
                     color='primary'
                     margin='dense'
+                    size='small'
                   />
                 </CardContent>
               </Card>

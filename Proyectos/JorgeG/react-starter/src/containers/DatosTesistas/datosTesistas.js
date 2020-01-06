@@ -1,18 +1,17 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import { Container } from '@material-ui/core';
 
-function DatosTesistas() {
+import Paperbase from '../Perfil';
+
+const DatosTesistas = () => {
+  const text = 'DatosTesistas';
+
   return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        {'Edu-K'}
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+    <Container>
+      <Paperbase />
+      <h1>{text}</h1>
+    </Container>
   );
-}
+};
 
 export default DatosTesistas;

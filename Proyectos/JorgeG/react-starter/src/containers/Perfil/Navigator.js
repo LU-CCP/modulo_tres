@@ -18,7 +18,14 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 
-import { DATOSPERSONALES, TARJETA } from '../../routes/paths';
+import {
+  DATOSPERSONALES,
+  TARJETA,
+  DATOSTESISTAS,
+  PROYECTOS,
+  PUBLICACIONES,
+  CONFIGURACION
+} from '../../routes/paths';
 
 const categories = [
   {
@@ -26,14 +33,20 @@ const categories = [
     children: [
       { id: 'Mis Datos', icon: <PersonIcon />, active: DATOSPERSONALES },
       { id: 'Mis Cursos', icon: <BookIcon />, active: TARJETA },
-      { id: 'Datos de Tesistas', icon: <SupervisorAccountIcon /> },
-      { id: 'Proyectos', icon: <AssignmentIcon /> },
-      { id: 'Publicaciones', icon: <LibraryBooksIcon /> }
+      {
+        id: 'Datos de Tesistas',
+        icon: <SupervisorAccountIcon />,
+        active: DATOSTESISTAS
+      },
+      { id: 'Proyectos', icon: <AssignmentIcon />, active: PROYECTOS },
+      { id: 'Publicaciones', icon: <LibraryBooksIcon />, active: PUBLICACIONES }
     ]
   },
   {
     id: 'Opciones',
-    children: [{ id: 'Configuracion', icon: <SettingsIcon /> }]
+    children: [
+      { id: 'Configuracion', icon: <SettingsIcon />, active: CONFIGURACION }
+    ]
   }
 ];
 
