@@ -101,7 +101,7 @@ function Navigator(props) {
   ]);
 
   return (
-    <Drawer variant='permanent' {...other}>
+    <Drawer variant='temporary' {...other}>
       <List disablePadding>
         <ListItem
           className={clsx(classes.firebase, classes.item, classes.itemCategory)}

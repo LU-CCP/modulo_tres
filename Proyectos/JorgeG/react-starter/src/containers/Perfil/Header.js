@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 
-import { ROOT } from '../../routes/paths';
+import { HOME } from '../../routes/paths';
 
 const useStyles = makeStyles({
   toolbar: {
@@ -41,18 +41,16 @@ function Header(props) {
       <AppBar className={classes.toolbar}>
         <Toolbar>
           <Grid container spacing={1} alignItems='center'>
-            <Hidden smUp>
               <Grid item>
                 <IconButton xs={2} color='inherit' onClick={onDrawerToggle}>
-                  <MenuIcon />{' '}
+                  <MenuIcon></MenuIcon>&nbsp;
                   <Typography variant='h6'>Jorge Gajardo</Typography>
                 </IconButton>
               </Grid>
-            </Hidden>
             <Grid item xs />
             <Grid item>
-              <IconButton xs={2} color='inherit' onClick={handleNavigate(ROOT)}>
-                {'Salir'}
+              <IconButton xs={2} color='inherit' onClick={handleNavigate(HOME)}>
+                {'Salir'}&nbsp;
                 <ExitToAppIcon />
               </IconButton>
             </Grid>

@@ -40,6 +40,6 @@ CMD ["nginx", "-g", "daemon off;"]
 
 
 
-# docker build -t clripley.azurecr.io/ripley.pay.core:20190913-PROD .
-# docker run -it clripley.azurecr.io/ripley.pay.core:20190913-PROD
-# docker push clripley.azurecr.io/ripley.pay.core:20190913-PROD
+# docker build -t jorgege/ejerciciofinal:18405690-9 .
+# docker run -it jorgege/ejerciciofinal:18405690-9
+# docker push jorgege/ejerciciofinal:18405690-9

@@ -27,21 +27,9 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 import jsonApi from '../../services/index';
 import useMount from '../../hooks/useMount';
 import logo from '../../resources/svg/eduK.png';
-import loginBg from '../../resources/svg/arcoUdec.jpg';
+import loginBg from '../../resources/svg/libros.jpg';
 import { DATOSPERSONALES } from '../../routes/paths';
-
-function Copyright() {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <Link color='inherit' href='localhost:3000'>
-        {'Edu-K'}
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from '../Copyright';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -77,7 +65,8 @@ const useStyles = makeStyles(theme => ({
   imagen: {
     width: '50%',
     height: '50%',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    borderRadius: '5px'
   }
 }));
 
@@ -86,14 +75,14 @@ export default function Login() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
-  useMount(async () => {
-    const { data } = await jsonApi().getUsers();
-    const { results } = data;
+  // useMount(async () => {
+  //   const { data } = await jsonApi().getUsers();
+  //   const { results } = data;
 
-    if (Array.isArray(results)) {
-      console.log(data);
-    }
-  });
+  //   if (Array.isArray(results)) {
+  //     console.log(data);
+  //   }
+  // });
   const handleNavigate = useCallback(path => () => dispatch(push(path)), [
     dispatch
   ]);

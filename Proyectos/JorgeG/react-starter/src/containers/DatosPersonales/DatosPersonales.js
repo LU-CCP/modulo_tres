@@ -23,10 +23,7 @@ import Copyright from '../Copyright';
 
 const useStyles = makeStyles(theme => ({
   container: {
-    marginLeft: 200,
-    [theme.breakpoints.down('xs')]: {
-      marginLeft: 0
-    }
+    marginLeft: 0
   },
   divHidden: {
     width: 256,
@@ -63,7 +60,8 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold'
   },
   grid: {
-    display: 'grid'
+    display: 'grid',
+    position: 'center'
     // alignItems: 'center',
     // justifyContent: 'center',
     // // [theme.breakpoints.down('xs')]: {
@@ -94,7 +92,12 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '10px'
   },
   button: {
-    backgroundColor: '#eaeff1'
+    backgroundColor: '#eaeff1',
+    '&:hover,&:focus': {
+      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+      color: '#4fc3f7',
+      fontWeight: 700
+    }
   }
 }));
 

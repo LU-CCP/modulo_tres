@@ -9,22 +9,24 @@ import {
   Configuracion,
   DatosTesistas,
   Publicaciones,
-  Proyectos
+  Proyectos,
+  Principal
 } from '../../containers';
 import {
-  ROOT,
+  LOGIN,
   PERFIL,
   TARJETA,
   DATOSPERSONALES,
   CONFIGURACION,
   DATOSTESISTAS,
   PUBLICACIONES,
-  PROYECTOS
+  PROYECTOS,
+  HOME
 } from '../paths';
 
 const Routes = () => (
   <Switch>
-    <Route exact path={ROOT} component={Login} />
+    <Route exact path={LOGIN} component={Login} />
     <Route exact path={PERFIL} component={Perfil} />
     <Route exact path={TARJETA} component={Tarjeta} />
     <Route exact path={DATOSPERSONALES} component={DatosPersonales} />
@@ -32,6 +34,7 @@ const Routes = () => (
     <Route exact path={DATOSTESISTAS} component={DatosTesistas} />
     <Route exact path={PUBLICACIONES} component={Publicaciones} />
     <Route exact path={PROYECTOS} component={Proyectos} />
+    <Route exact path={HOME} component={Principal} />
   </Switch>
 );
 

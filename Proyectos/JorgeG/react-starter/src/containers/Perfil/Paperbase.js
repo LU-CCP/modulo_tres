@@ -189,7 +189,12 @@ function Paperbase(props) {
               />
             </Hidden>
             <Hidden xsDown implementation='css'>
-              <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+              <Navigator
+                PaperProps={{ style: { width: drawerWidth } }}
+                variant='temporary'
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+              />
             </Hidden>
           </nav>
           <div>

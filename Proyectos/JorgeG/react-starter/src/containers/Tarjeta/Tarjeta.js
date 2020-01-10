@@ -4,7 +4,13 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Container, IconButton, CardHeader, Divider } from '@material-ui/core';
+import {
+  Container,
+  IconButton,
+  CardHeader,
+  Divider,
+  Checkbox
+} from '@material-ui/core';
 import {
   Info as InfoIcon,
   FolderOpen as FolderOpenIcon,
@@ -19,6 +25,117 @@ import Paperbase from '../Perfil';
 import Copyright from '../Copyright';
 import FormDialog from '../Modal/Modal';
 import { setEditUser } from '../../actions/cambios';
+
+const categories = [
+  {
+    id: 'cursos',
+    curso: { año: '2020', periodo: '1', seccion: 's1' },
+    asignatura: { nombre: 'Calculo', tipo: 'P' },
+    sala: { numerosala: 'L-203' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '8:10', horafin: '9:30' },
+    dia: { nombredia: 'Lunes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  },
+  {
+    id: 'cursos1',
+    curso: { año: '2019', periodo: '2', seccion: 's2' },
+    asignatura: { nombre: 'Auditoria', tipo: 'L' },
+    sala: { numerosala: 'L-303' },
+    carrera: { nombrecarrera: 'Ing. Informatica' },
+    horabloque: { horainicio: '2:10', horafin: '4:30' },
+    dia: { nombredia: 'Martes' }
+  }
+];
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -48,7 +165,8 @@ const useStyles = makeStyles(theme => ({
     color: 'white'
   },
   div: {
-    display: 'flex'
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr 1fr'
   },
   div_int: {
     display: 'grid'
@@ -93,43 +211,63 @@ const Tarjeta = () => {
         onClose={handleCloseModal}
       />
       <Paperbase />
+
       <div className={classes.div}>
-        <Card className={classes.card}>
-          <CardHeader
-            title='2020-2'
-            avatar={<FiberManualRecordIcon color='secondary' />}
-          />
-          <Divider className={classes.divider} />
-          <CardContent>
-            <Typography variant='h5' component='h2'>
-              <FolderOpenIcon className={classes.icons} />
-              {'Calculo'}
-            </Typography>
-            <Typography variant='body2' component='p'>
-              <LocationOnIcon className={classes.icons} />
-              {'L-203'}
-            </Typography>
-            <Typography variant='body2' component='p'>
-              <EmojiFlagsIcon className={classes.icons} />
-              {'Ing. Informatica'}
-            </Typography>
-            <Typography variant='body2' component='p'>
-              <TodayIcon className={classes.icons} />
-              {'8:10 - 9:30 Lunes'} {'P'}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <IconButton
-              size='small'
-              onClick={handleOpenModal(index, {
-                datito
-              })}
-            >
-              Mas Info...
-              <InfoIcon color='primary' />
-            </IconButton>
-          </CardActions>
-        </Card>
+        {' '}
+        {categories.map(
+          ({ id, curso, asignatura, sala, carrera, horabloque, dia }) => (
+            <React.Fragment key={id}>
+              <Card className={classes.card}>
+                <CardHeader
+                  title={`${curso.año}-${curso.periodo}`}
+                  avatar={<FiberManualRecordIcon color='secondary' />}
+                  action={
+                    <IconButton aria-label='settings'>
+                      <Checkbox
+                        value='secondary'
+                        color='primary'
+                        inputProps={{ 'aria-label': 'secondary checkbox' }}
+                        size='small'
+                      />
+                    </IconButton>
+                  }
+                />
+
+                <Divider className={classes.divider} />
+                <CardContent>
+                  <Typography variant='h5' component='h2'>
+                    <FolderOpenIcon className={classes.icons} />
+                    {`${asignatura.nombre} / ${curso.seccion}`}
+                  </Typography>
+                  <Typography variant='body2' component='p'>
+                    <LocationOnIcon className={classes.icons} />
+                    {sala.numerosala}
+                  </Typography>
+                  <Typography variant='body2' component='p'>
+                    <EmojiFlagsIcon className={classes.icons} />
+                    {carrera.nombrecarrera}
+                  </Typography>
+                  <Typography variant='body2' component='p'>
+                    <TodayIcon className={classes.icons} />
+                    {`${horabloque.horainicio}-${horabloque.horafin} ${dia.nombredia}`}{' '}
+                    {asignatura.tipo}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <IconButton
+                    size='small'
+                    onClick={handleOpenModal(index, {
+                      datito
+                    })}
+                  >
+                    Mas Info...
+                    <InfoIcon color='primary' />
+                  </IconButton>
+                </CardActions>
+              </Card>{' '}
+            </React.Fragment>
+          )
+        )}
       </div>
 
       <div>
