@@ -7,12 +7,6 @@ import Copyright from '../Copyright';
 import Paperbase from '../Perfil';
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    marginLeft: 200,
-    [theme.breakpoints.down('xs')]: {
-      marginLeft: 0
-    }
-  },
   card: {
     minWidth: 27,
     margin: '5px',

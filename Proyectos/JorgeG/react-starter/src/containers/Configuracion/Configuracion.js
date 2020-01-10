@@ -11,12 +11,6 @@ import Paperbase from '../Perfil';
 import Copyright from '../Copyright';
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    marginLeft: 200,
-    [theme.breakpoints.down('xs')]: {
-      marginLeft: 0
-    }
-  },
   divHidden: {
     width: 256,
     height: 256,

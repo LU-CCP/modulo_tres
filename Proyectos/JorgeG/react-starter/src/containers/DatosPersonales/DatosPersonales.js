@@ -22,9 +22,6 @@ import Paperbase from '../Perfil';
 import Copyright from '../Copyright';
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    marginLeft: 0
-  },
   divHidden: {
     width: 256,
     height: 256,
@@ -103,6 +100,31 @@ const useStyles = makeStyles(theme => ({
 
 export default function DatosPersonales() {
   const classes = useStyles();
+
+  async function consultar() {
+    const query = 'SELECT * FROM Region';
+    const req = await fetch('http://localhost:8090/v1/transversal', {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json', Authorization: 'TOKEN' },
+      body: JSON.stringify({
+        query
+      })
+    }).catch(error => {
+      console.log(error);
+    });
+
+    const response = await req.json();
+
+    console.log(response);
+
+    return response;
+  }
+
+  function request() {
+    const resultado = consultar();
+  }
+
   // const { editUser } = useSelector(({ cambios }) => cambios);
   // // const [showPassword, setShowPassword] = useState(false);
 
@@ -304,19 +326,23 @@ export default function DatosPersonales() {
               </Card>
             </CardContent>
             <CardActions>
-              <Button className={classes.button} size='small'>
+              <Button
+                className={classes.button}
+                size='small'
+                onClick={() => request()}
+              >
                 {'Editar'}
               </Button>
             </CardActions>
           </Card>
         </div>
       </Grid>
-
+      {/* 
       <div>
         <footer className={classes.footer}>
           <Copyright />
         </footer>
-      </div>
+      </div> */}
     </Container>
   );
 }

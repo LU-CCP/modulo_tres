@@ -4,7 +4,6 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Hidden,
   Grid,
   Typography
 } from '@material-ui/core';
@@ -41,12 +40,13 @@ function Header(props) {
       <AppBar className={classes.toolbar}>
         <Toolbar>
           <Grid container spacing={1} alignItems='center'>
-              <Grid item>
-                <IconButton xs={2} color='inherit' onClick={onDrawerToggle}>
-                  <MenuIcon></MenuIcon>&nbsp;
-                  <Typography variant='h6'>Jorge Gajardo</Typography>
-                </IconButton>
-              </Grid>
+            <Grid item>
+              <IconButton xs={2} color='inherit' onClick={onDrawerToggle}>
+                <MenuIcon />
+                &nbsp;
+                <Typography variant='h6'>Jorge Gajardo</Typography>
+              </IconButton>
+            </Grid>
             <Grid item xs />
             <Grid item>
               <IconButton xs={2} color='inherit' onClick={handleNavigate(HOME)}>

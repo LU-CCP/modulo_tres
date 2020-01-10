@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -138,12 +138,6 @@ const categories = [
 ];
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    marginLeft: 200,
-    [theme.breakpoints.down('xs')]: {
-      marginLeft: 0
-    }
-  },
   card: {
     minWidth: 27,
     margin: '5px',
@@ -166,7 +160,7 @@ const useStyles = makeStyles(theme => ({
   },
   div: {
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr 1fr'
+    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))'
   },
   div_int: {
     display: 'grid'
@@ -260,7 +254,7 @@ const Tarjeta = () => {
                       datito
                     })}
                   >
-                    Mas Info...
+                    {'Mas Info...'}
                     <InfoIcon color='primary' />
                   </IconButton>
                 </CardActions>

@@ -16,6 +16,8 @@ import Hidden from '@material-ui/core/Hidden';
 // import useOpcion from '../../hooks/useOpcion';
 // import { TARJETA } from '../../routes/paths';
 
+import Copyright from '../Copyright';
+
 import Navigator from './Navigator';
 import Header from './Header';
 
@@ -139,16 +141,16 @@ const styles = {
   },
   drawer: {
     [theme.breakpoints.up('xs')]: {
-      width: 800,
+      width: 0,
       flexShrink: 0,
       marginTop: '50px',
-      marginRight: 300
+      marginRight: 0
     },
     [theme.breakpoints.down('xs')]: {
-      width: 800,
+      width: 0,
       flexShrink: 0,
       marginTop: '50px',
-      marginRight: 300
+      marginRight: 0
     }
   },
   app: {
@@ -205,6 +207,9 @@ function Paperbase(props) {
             {/* <main className={classes.main}>{}</main> */}
           </div>
         </div>
+        <footer>
+          <Copyright />
+        </footer>
       </ThemeProvider>
     </Container>
   );
