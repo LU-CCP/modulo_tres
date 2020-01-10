@@ -8,13 +8,14 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Avatar, Grid, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import useForm from 'react-hook-form';
 import { goBack } from 'connected-react-router';
 
 import guardar from '../actions/guardar';
 import useMount from '../hooks/useMount';
 import jsonApi from '../services/jsonApi';
 import reducer from '../reducers/list';
+
+import Dialog from './edit';
 
 const useStyles = makeStyles({
   root: {
@@ -27,7 +28,9 @@ const useStyles = makeStyles({
 });
 
 export default function SimpleTable() {
-  const { personasGuardadas, deleteUsers } = useSelector(({ list }) => list);
+  const { personEdit, personasGuardadas, deleteUsers } = useSelector(
+    ({ list }) => list
+  );
 
   const dispatch = useDispatch();
   const handleEdit = useCallback(
@@ -42,11 +45,13 @@ export default function SimpleTable() {
 
   console.log('Delete', deleteUsers);
   const handleClose = () => {
-    setOpen(false);
+    dispatch(guardar.editUsers(null));
   };
 
-  const onSubmit = data => console.log(data);
-  const { register, handleSubmit } = useForm();
+  const handleSubmit = data => {
+    handleClose();
+  };
+
   const classes = useStyles();
   const [users, setUsers] = useState([]);
 
@@ -96,7 +101,7 @@ export default function SimpleTable() {
                 <Grid>{user.email}</Grid>
               </TableCell>
               <TableCell align='right'>
-                <Button variant='outlined' onClick={handleEdit(index)}>
+                <Button variant='outlined' onClick={handleEdit(user)}>
                   Edit
                 </Button>
               </TableCell>
@@ -109,6 +114,11 @@ export default function SimpleTable() {
           ))}
         </TableBody>
       </Table>
+      <Dialog
+        open={!!personEdit}
+        onClose={handleClose}
+        onSubmit={handleSubmit}
+      />
     </Paper>
   );
 }

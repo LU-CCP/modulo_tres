@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
@@ -23,15 +23,20 @@ const Users = () => {
   const dispatch = useDispatch();
   const { users } = useSelector(({ home }) => home);
   const classes = useStyles();
+  const [dialogIndex, setDialogIndex] = useState();
 
   const handleDeleteUser = useCallback(
     index => () => dispatch(deleteUser(index)),
     [dispatch]
   );
 
-  const handleOpenForm = useCallback(index => () => dispatch(openForm(index)), [
-    dispatch
-  ]);
+  const handleOpenForm = useCallback(
+    index => () => {
+      setDialogIndex(index);
+      dispatch(openForm(index));
+    },
+    [dispatch]
+  );
 
   const renderUsers = () =>
     users.usersList.map((user, index) => (
@@ -60,8 +65,6 @@ const Users = () => {
           >
             {''}
           </Button>
-
-          <DialogForm index={index} />
         </ListItem>
         <Divider variant='inset' component='li' />
       </List>
@@ -73,6 +76,7 @@ const Users = () => {
       <h1 style={{ color: 'grey' }}> {'Lista Usuarios'}</h1>
 
       <Grid>{renderUsers()}</Grid>
+      <DialogForm index={dialogIndex} />
     </Container>
   );
 };

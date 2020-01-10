@@ -1,10 +1,19 @@
 import { createReducer } from 'reduxsauce';
 import produce from 'immer';
 
-import { SAVE_USER, DELETE_USER, UPDATE_USER } from '../actions/users';
+import {
+  SAVE_USER,
+  DELETE_USER,
+  UPDATE_USER,
+  SET_USER_EDIT
+} from '../actions/users';
 
 const INITIAL_STATE = {
-  usersList: []
+  usersList: [],
+  userEdit: {
+    index: -1,
+    data: null
+  }
 };
 
 const saveUser = produce((draft, { user }) => {
@@ -16,10 +25,10 @@ const deleteUser = produce((draft, { index }) => {
 });
 
 const updateUser = produce((draft, { user, index }) => {
-  index = Number(index);
+  const indexnum = +index;
 
   draft.usersList.forEach((item, i) => {
-    if (i === index) {
+    if (i === indexnum) {
       item.name.first = user.first;
       item.name.last = user.last;
       item.email = user.mail;
@@ -27,10 +36,16 @@ const updateUser = produce((draft, { user, index }) => {
   });
 });
 
+const setUserEdit = produce(({ userEdit }, { index, data }) => {
+  userEdit.index = index;
+  userEdit.data = data;
+});
+
 const reducer = createReducer(INITIAL_STATE, {
   [SAVE_USER]: saveUser,
   [DELETE_USER]: deleteUser,
-  [UPDATE_USER]: updateUser
+  [UPDATE_USER]: updateUser,
+  [SET_USER_EDIT]: setUserEdit
 });
 
 export default reducer;

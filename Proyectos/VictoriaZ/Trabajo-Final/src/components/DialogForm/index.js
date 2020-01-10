@@ -12,7 +12,7 @@ import {
 import { closeForm } from '../../actions/home';
 import Formulario from '../FormHooks';
 
-const DialogForm = index => {
+const DialogForm = ({ index }) => {
   const dispatch = useDispatch();
   const { users, editar } = useSelector(({ home }) => home);
 

@@ -6,7 +6,8 @@ import {
   SAVE_USER,
   DELETE_USER,
   OPEN_FORM,
-  CLOSE_FORM
+  CLOSE_FORM,
+  SET_RANDOM_USERS
 } from '../actions/home';
 
 const INITIAL_STATE = {
@@ -27,26 +28,22 @@ const INITIAL_STATE = {
   editar: false
 };
 
-const saveUser = produce((draft, { index }) => {
-  draft.users.usersList.push({
-    first: draft.randomUsers.randomUsersList[index].first,
-    last: draft.randomUsers.randomUsersList[index].last,
-    email: draft.randomUsers.randomUsersList[index].email,
-    picture: draft.randomUsers.randomUsersList[index].picture,
-    id: draft.randomUsers.randomUsersList[index].id
-  });
+const setRandomUsers = produce(({ randomUsers }, { data }) => {
+  randomUsers.randomUsersList = data;
+});
+
+const saveUser = produce((draft, { index, data }) => {
+  draft.users.usersList.push(data);
 
   draft.randomUsers.randomUsersList = draft.randomUsers.randomUsersList.filter(
     (v, i) => index !== i
   );
 });
 
-const editUser = produce((draft, { index }) => {
-  const { firstName, lastName, mail } = index;
+const editUser = produce((draft, { index, data }) => {
+  const user = draft.users.usersList[index];
 
-  draft.users.usersList[draft.users.modifiedUser.posicion].first = firstName;
-  draft.users.usersList[draft.users.modifiedUser.posicion].last = lastName;
-  draft.users.usersList[draft.users.modifiedUser.posicion].email = mail;
+  draft.users.usersList[index] = { ...user, ...data };
   draft.editar = false;
 });
 
@@ -71,7 +68,8 @@ const reducer = createReducer(INITIAL_STATE, {
   [EDIT_USER]: editUser,
   [DELETE_USER]: deleteUser,
   [OPEN_FORM]: openForm,
-  [CLOSE_FORM]: closeForm
+  [CLOSE_FORM]: closeForm,
+  [SET_RANDOM_USERS]: setRandomUsers
 });
 
 export default reducer;

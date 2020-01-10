@@ -24,16 +24,15 @@ import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import { ROOT } from '../../routes/paths';
-import { deleteUser, updateUser } from '../../actions/users';
+import { deleteUser, updateUser, setUserEdit } from '../../actions/users';
 
 import ErrorMessage from './errorMessage';
 import useStyles from './styles';
 
 const UsersList = () => {
-  const [open, setOpen] = React.useState(false);
-  const [varUser, setVarUser] = React.useState([]);
-
   const dispatch = useDispatch();
+  const { usersList, userEdit } = useSelector(({ users }) => users);
+
   const { register, handleSubmit, errors } = useForm();
 
   const handleUpdateUser = useCallback(
@@ -41,8 +40,15 @@ const UsersList = () => {
     [dispatch]
   );
 
+  const handleOpenModal = (user, index) => () => {
+    dispatch(setUserEdit(index, user));
+  };
+
+  const handleClose = () => {
+    dispatch(setUserEdit(-1, null));
+  };
+
   const onSubmit = ({ firstName, lastName, email, index }) => {
-    handleClose();
     const items = {
       first: firstName,
       last: lastName,
@@ -50,18 +56,10 @@ const UsersList = () => {
     };
 
     handleUpdateUser(items, index);
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
+    handleClose();
   };
 
   const classes = useStyles();
-  const { usersList } = useSelector(({ users }) => users);
 
   const handleNavigate = useCallback(path => () => dispatch(push(path)), [
     dispatch
@@ -77,14 +75,6 @@ const UsersList = () => {
       fontSize: 20
     }
   }))(TableCell);
-
-  const handleOpenModal = (user, index) => () => {
-    const arr = [];
-
-    arr[index] = user;
-    setVarUser(arr);
-    handleClickOpen();
-  };
 
   const renderUserslist = (lista, index) => (
     <TableRow key={lista.login.uuid}>
@@ -112,80 +102,78 @@ const UsersList = () => {
     </TableRow>
   );
 
-  const renderDialog = (user, index) => (
-    <Grid container key={user.login.uuid}>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-        className={classes.app}
-      >
-        <DialogTitle id='alert-dialog-title'>Update user</DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>
-            <form
-              className={classes.appForm}
-              onSubmit={handleSubmit(onSubmit)}
-              ref={register}
-            >
-              <Grid item>
-                <input
-                  type='hidden'
-                  name='index'
-                  value={index}
-                  ref={register}
-                />
-                <label className={classes.labelForm}>First Name:</label>
-                <input
-                  className={classes.appFormItem}
-                  name='firstName'
-                  label='First name'
-                  type='input'
-                  defaultValue={user.name.first}
-                  ref={register({
-                    required: 'Firts name'
-                  })}
-                />
-                <ErrorMessage error={errors.firstName} />
-              </Grid>
-              <Grid item>
-                <label className={classes.labelForm}>Last Name:</label>
-                <input
-                  className={classes.appFormItem}
-                  name='lastName'
-                  label='Last name'
-                  ref={register({ required: 'Last name' })}
-                  defaultValue={user.name.last}
-                />
-                <ErrorMessage error={errors.lastName} />
-              </Grid>
-              <Grid item>
-                <label className={classes.labelForm}>Email:</label>
-                <input
-                  className={classes.appFormItem}
-                  name='email'
-                  label='Email'
-                  ref={register({ required: 'Email', pattern: /^\S+@\S+$/i })}
-                  defaultValue={user.email}
-                />
-                <ErrorMessage error={errors.email} />
-              </Grid>
-              <Grid item>
-                <Button
-                  className={classes.buttonForm}
-                  type='submit'
-                  color='secondary'
-                  variant='contained'
-                >
-                  {'Update user'}
-                </Button>
-              </Grid>
-            </form>
-          </DialogContentText>
-        </DialogContent>
-      </Dialog>
-    </Grid>
+  const dialogJSX = !!userEdit.data && (
+    <Dialog
+      open={!!userEdit.data}
+      onClose={handleClose}
+      aria-labelledby='alert-dialog-title'
+      aria-describedby='alert-dialog-description'
+      className={classes.app}
+    >
+      <DialogTitle id='alert-dialog-title'>Update user</DialogTitle>
+      <DialogContent>
+        <DialogContentText id='alert-dialog-description'>
+          <form
+            className={classes.appForm}
+            onSubmit={handleSubmit(onSubmit)}
+            ref={register}
+          >
+            <Grid item>
+              <input
+                type='hidden'
+                name='index'
+                value={userEdit.index}
+                ref={register}
+              />
+              <label className={classes.labelForm}>First Name:</label>
+              <input
+                className={classes.appFormItem}
+                name='firstName'
+                label='First name'
+                type='input'
+                defaultValue={userEdit.data.name.first}
+                ref={register({
+                  required: 'Firts name'
+                })}
+              />
+              <ErrorMessage error={errors.firstName} />
+            </Grid>
+            <Grid item>
+              <label className={classes.labelForm}>Last Name:</label>
+              <input
+                className={classes.appFormItem}
+                name='lastName'
+                label='Last name'
+                ref={register({ required: 'Last name' })}
+                defaultValue={userEdit.data.name.last}
+              />
+              <ErrorMessage error={errors.lastName} />
+            </Grid>
+            <Grid item>
+              <label className={classes.labelForm}>Email:</label>
+              <input
+                className={classes.appFormItem}
+                name='email'
+                label='Email'
+                ref={register({ required: 'Email', pattern: /^\S+@\S+$/i })}
+                defaultValue={userEdit.data.email}
+              />
+              <ErrorMessage error={errors.email} />
+            </Grid>
+            <Grid item>
+              <Button
+                className={classes.buttonForm}
+                type='submit'
+                color='secondary'
+                variant='contained'
+              >
+                {'Update user'}
+              </Button>
+            </Grid>
+          </form>
+        </DialogContentText>
+      </DialogContent>
+    </Dialog>
   );
 
   return (
@@ -212,8 +200,7 @@ const UsersList = () => {
           </Table>
         </Paper>
       </Grid>
-
-      {varUser.map(renderDialog)}
+      {dialogJSX}
     </Container>
   );
 };

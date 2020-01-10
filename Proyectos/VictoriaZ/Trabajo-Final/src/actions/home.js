@@ -2,20 +2,35 @@ import { createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions(
   {
-    saveUser: ['index'],
+    saveUser: ['index', 'data'],
     deleteUser: ['index'],
-    editUser: ['index'],
+    editUser: ['index', 'data'],
     openForm: ['index'],
-    closeForm: null
+    closeForm: null,
+    setRandomUsers: ['data']
   },
   {
     prefix: 'HOME/'
   }
 );
 
-const { saveUser, deleteUser, editUser, openForm, closeForm } = Creators;
+const {
+  saveUser,
+  deleteUser,
+  editUser,
+  openForm,
+  closeForm,
+  setRandomUsers
+} = Creators;
 
-const { SAVE_USER, DELETE_USER, EDIT_USER, OPEN_FORM, CLOSE_FORM } = Types;
+const {
+  SAVE_USER,
+  DELETE_USER,
+  EDIT_USER,
+  OPEN_FORM,
+  CLOSE_FORM,
+  SET_RANDOM_USERS
+} = Types;
 
 export {
   Types,
@@ -24,11 +39,13 @@ export {
   editUser,
   openForm,
   closeForm,
+  setRandomUsers,
   SAVE_USER,
   DELETE_USER,
   EDIT_USER,
   OPEN_FORM,
-  CLOSE_FORM
+  CLOSE_FORM,
+  SET_RANDOM_USERS
 };
 
 export default Creators;
